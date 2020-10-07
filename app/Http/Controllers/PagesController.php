@@ -19,7 +19,7 @@ class PagesController extends Controller
             'title' => 'Services',
             'services' => ['Web design', 'Programming', 'SEO']
         ];
-        return view('pages.index')->with($data);
+        return view('pages.services')->with($data);
     }
 
     public function about()
