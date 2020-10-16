@@ -30,8 +30,8 @@ use App\Http\Controllers\PagesController;
     //return view('about');
 //});
 
-Route::get('/', [PagesController::class, 'index']);
-Route::get('/services', [PagesController::class, 'services']);
+Route::get('/', [PagesController::class, 'index'])->name('home');
+Route::get('/services', [PagesController::class, 'services'])->name('services');
 
-Route::get('/about', [PagesController::class, 'about']);
+Route::get('/about', [PagesController::class, 'about'])->name('about');
 //Route::get('/about', 'App\Http\Controllers\PagesController@about');
