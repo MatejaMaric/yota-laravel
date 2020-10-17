@@ -33,6 +33,16 @@ class PagesController extends Controller
         return view('pages.login');
     }
 
+    public function activities(Request $request)
+    {
+        return view('pages.activities');
+    }
+
+    public function reserve(Request $request)
+    {
+        return view('pages.reserve');
+    }
+
     //public function services()
     //{
         ////$title = 'Some title';
