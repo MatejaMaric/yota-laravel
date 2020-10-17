@@ -15,6 +15,7 @@
     </head>
     <body>
         @include('inc.navbar')
+        @yield('jumbotron')
         <div class="container pt-3">
             @yield('content')
         </div>

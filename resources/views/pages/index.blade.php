@@ -1,5 +1,15 @@
 @extends('layouts.app')
 
+@section('jumbotron')
+{{--<div class="jumbotron jumbotron-fluid bg-cover" style="background-image: url('/imgs/yota.jpg'); background-size: cover; background-repeat: no-repeat;">--}}
+<div class="jumbotron">
+    {{--<img src="/imgs/yota.jpg" class="img-fluid" alt="YOTA Serbia Camp"/>--}}
+    <div class="container">
+        <h1 class="display-3">Youngsters On The Air</h1>
+    </div>
+</div>
+@endsection
+
 @section('content')
 <p>
 Educational Center “Čardak“,

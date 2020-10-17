@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-    <span class="navbar-brand">YOTA</span>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,10 +13,23 @@
             <a href="{{ route('activities') }}" class="nav-item nav-link {{ request()->routeIs('activities') ? 'active' : '' }}">Activities</a>
             <a href="{{ route('reserve') }}" class="nav-item nav-link {{ request()->routeIs('reserve') ? 'active' : '' }}">Make reservation</a>
         </div>
-        @if (!Auth::check())
         <div class="navbar-nav ml-auto">
-            <a href="{{ route('login') }}" class="nav-item nav-link {{ request()->routeIs('login') ? 'active' : '' }}">Login</a>
-        </div>
+        @if (Auth::check())
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Administration
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Posts</a>
+              <a class="dropdown-item" href="#">Callsigns</a>
+              <a class="dropdown-item" href="#">Reservations</a>
+            </div>
+          </div>
+          <a href="#" class="nav-item nav-link">Logout</a>
+        @else
+          <a href="{{ route('login') }}" class="nav-item nav-link {{ request()->routeIs('login') ? 'active' : '' }}">Login</a>
         @endif
+        </div>
+    </div>
     </div>
 </nav>
