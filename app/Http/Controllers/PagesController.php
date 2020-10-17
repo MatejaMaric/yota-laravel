@@ -6,27 +6,32 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return view('pages.index');
     }
 
-    public function services()
+    public function sponsoring(Request $request)
     {
-        //$title = 'Some title';
-        //return view('pages.index', compact('title'));
-        $data = [
-            'title' => 'Services',
-            'services' => ['Web design', 'Programming', 'SEO']
-        ];
-        return view('pages.services')->with($data);
+        return view('pages.sponsoring');
     }
 
-    public function about()
-    {
-        //$title = 'About';
-        //return view('pages.index')->with('title', $title);
-        $data = ['title' => 'About'];
-        return view('pages.index')->with($data);
-    }
+    //public function services()
+    //{
+        ////$title = 'Some title';
+        ////return view('pages.index', compact('title'));
+        //$data = [
+            //'title' => 'Services',
+            //'services' => ['Web design', 'Programming', 'SEO']
+        //];
+        //return view('pages.services')->with($data);
+    //}
+
+    //public function about()
+    //{
+        ////$title = 'About';
+        ////return view('pages.index')->with('title', $title);
+        //$data = ['title' => 'About'];
+        //return view('pages.index')->with($data);
+    //}
 }

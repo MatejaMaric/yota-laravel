@@ -31,7 +31,11 @@ use App\Http\Controllers\PagesController;
 //});
 
 Route::get('/', [PagesController::class, 'index'])->name('home');
-Route::get('/services', [PagesController::class, 'services'])->name('services');
+Route::get('/news', [PagesController::class, 'news'])->name('news');
+Route::get('/gallery', [PagesController::class, 'gallery'])->name('gallery');
+Route::get('/sponsoring', [PagesController::class, 'sponsoring'])->name('sponsoring');
 
-Route::get('/about', [PagesController::class, 'about'])->name('about');
+Route::get('/login', [PagesController::class, 'login'])->name('login');
+
+//Route::get('/about', [PagesController::class, 'about'])->name('about');
 //Route::get('/about', 'App\Http\Controllers\PagesController@about');

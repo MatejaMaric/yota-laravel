@@ -6,9 +6,8 @@
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav">
-            <a href="/" class="nav-item nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
-            <a href="/services" class="nav-item nav-link {{ request()->routeIs('services') ? 'active' : '' }}">Services</a>
-            <a href="/about" class="nav-item nav-link {{ request()->routeIs('about') ? 'active' : '' }}">About</a>
+            <a href="{{ route('home') }}" class="nav-item nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
+            <a href="{{ route('sponsoring') }}" class="nav-item nav-link {{ request()->routeIs('sponsoring') ? 'active' : '' }}">Sponsoring</a>
         </div>
         <div class="navbar-nav ml-auto">
             <a href="#" class="nav-item nav-link">Login</a>
