@@ -16,6 +16,23 @@ class PagesController extends Controller
         return view('pages.sponsoring');
     }
 
+    //--------------------------------------
+
+    public function news(Request $request)
+    {
+        return view('pages.news');
+    }
+
+    public function gallery(Request $request)
+    {
+        return view('pages.gallery');
+    }
+
+    public function login(Request $request)
+    {
+        return view('pages.login');
+    }
+
     //public function services()
     //{
         ////$title = 'Some title';
