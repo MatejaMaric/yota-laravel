@@ -2,7 +2,7 @@
 
 @section('content')
 <form action="{{ route('reserve') }}" method="POST">
-
+  @csrf      
   <!-- SPECIAL CALL -->
 <div class="form-group">
   <label for="special-call">Special Callsign:</label>
