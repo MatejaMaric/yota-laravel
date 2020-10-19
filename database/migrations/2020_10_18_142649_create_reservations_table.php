@@ -16,7 +16,7 @@ class CreateReservationsTable extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->boolean('approved')->default(false);
-            $table->string('specialCall');
+            $table->unsignedBigInteger('specialCall')
             $table->dateTime('fromTime');
             $table->dateTime('toTime');
             $table->string('frequencies', 255);
@@ -27,6 +27,7 @@ class CreateReservationsTable extends Migration
             $table->string('operatorPhone', 50);
             $table->integer('qso')->default(0);
             $table->timestamps();
+            $table->foreign('specialCall')->references('id')->on('special_calls');
         });
     }
 
