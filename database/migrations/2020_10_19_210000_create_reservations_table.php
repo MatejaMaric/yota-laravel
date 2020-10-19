@@ -16,7 +16,7 @@ class CreateReservationsTable extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->boolean('approved')->default(false);
-            $table->unsignedBigInteger('specialCall')
+            $table->unsignedBigInteger('specialCall');
             $table->dateTime('fromTime');
             $table->dateTime('toTime');
             $table->string('frequencies', 255);
