@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class PagesController extends Controller
 {
@@ -20,7 +21,10 @@ class PagesController extends Controller
 
     public function news(Request $request)
     {
-        return view('pages.news');
+        $news = Post::all();
+
+        //return view('pages.news')->with('news', $news);
+        return view('pages.news', compact('news'));
     }
 
     public function gallery(Request $request)
