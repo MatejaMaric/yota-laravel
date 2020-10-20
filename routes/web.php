@@ -36,6 +36,7 @@ Route::get('/gallery', [PagesController::class, 'gallery'])->name('gallery');
 Route::get('/sponsoring', [PagesController::class, 'sponsoring'])->name('sponsoring');
 Route::get('/activities', [PagesController::class, 'activities'])->name('activities');
 Route::get('/reserve', [PagesController::class, 'reserve'])->name('reserve');
+Route::post('/reserve', [PagesController::class, 'reserveForm'])->name('reserveForm');
 
 Route::get('/login', [PagesController::class, 'login'])->name('login');
 

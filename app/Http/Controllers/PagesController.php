@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use function dd;
+use function redirect;
 
 class PagesController extends Controller
 {
@@ -45,6 +47,12 @@ class PagesController extends Controller
     public function reserve(Request $request)
     {
         return view('pages.reserve');
+    }
+
+    public function reserveForm(Request $request)
+    {
+        //dd($request->input('modes'));
+        return redirect('reserve')->with('status', 'Reservation submitted.');
     }
 
     //public function services()

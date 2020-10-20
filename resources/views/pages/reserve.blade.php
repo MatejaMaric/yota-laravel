@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+  @if (session('status'))
+    <div class="alert alert-success">
+      {{ session('status') }}
+    </div>
+  @endif
 <form action="{{ route('reserve') }}" method="POST">
   @csrf      
   <!-- SPECIAL CALL -->
