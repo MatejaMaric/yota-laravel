@@ -12,6 +12,8 @@
     </table>
 </div>
 @else
-<p>There are currently no approved activities.</p>
+<div class="text-center">
+  <strong>There are currently no approved activities.</strong>
+</div>
 @endif
 @endsection()
