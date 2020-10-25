@@ -52,6 +52,38 @@ class PagesController extends Controller
     public function reserveForm(Request $request)
     {
         //dd($request->input('modes'));
+
+        $validatedData = $request->validate([
+            'scall' => 'required|alphanum',
+            'sdate' => 'required|date',
+            'stime' => 'required',
+            'edate' => 'required|date',
+            'etime' => 'required',
+            'freqs' => 'required',
+            'modes' => 'required',
+            'ocall' => 'required|alphanum',
+            'oname' => 'required',
+            'email' => 'required|email',
+            'phone' => ['required', 'regex:/^[0-9 ]+$/'],
+        ]);
+
+/*
+            $table->id();
+            $table->boolean('approved')->default(false);
+            $table->unsignedBigInteger('specialCall');
+            $table->dateTime('fromTime');
+            $table->dateTime('toTime');
+            $table->string('frequencies', 255);
+            $table->string('modes', 255);
+            $table->string('operatorCall');
+            $table->string('operatorName');
+            $table->string('operatorEmail');
+            $table->string('operatorPhone', 50);
+            $table->integer('qso')->default(0);
+            $table->timestamps();
+            $table->foreign('specialCall')->references('id')->on('special_calls');
+*/
+
         return redirect('reserve')->with('status', 'Reservation submitted.');
     }
 
