@@ -39,6 +39,7 @@ Route::get('/reserve', [PagesController::class, 'reserve'])->name('reserve');
 Route::post('/reserve', [PagesController::class, 'reserveForm'])->name('reserveForm');
 
 Route::get('/login', [PagesController::class, 'login'])->name('login');
+Route::post('/login', [PagesController::class, 'loginForm'])->name('loginForm');
 
 //Route::get('/about', [PagesController::class, 'about'])->name('about');
 //Route::get('/about', 'App\Http\Controllers\PagesController@about');

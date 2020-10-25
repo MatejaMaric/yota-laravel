@@ -87,6 +87,21 @@ class PagesController extends Controller
         return redirect('reserve')->with('status', 'Reservation submitted.');
     }
 
+    /**
+     * undocumented function
+     *
+     * @return void
+     */
+    public function loginForm(Request $request)
+    {
+        $validatedData = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        return redirect('login')->with('status', 'Submitted.');
+    }
+    
+
     //public function services()
     //{
         ////$title = 'Some title';

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@if (1==2)
 <div class="table-responsive">
     <table class="table table-striped table-bordered"><!-- table-hover -->
         <thead class="thead-dark">
@@ -10,4 +11,7 @@
         </tbody>
     </table>
 </div>
+@else
+<p>There are currently no approved activities.</p>
+@endif
 @endsection()
