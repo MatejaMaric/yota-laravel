@@ -5,7 +5,7 @@
 <div class="jumbotron">
     {{--<img src="/imgs/yota.jpg" class="img-fluid" alt="YOTA Serbia Camp"/>--}}
     <div class="container">
-        <h1 class="display-3">Youngsters On The Air</h1>
+        <h1 class="display-4">Youngsters On The Air</h1>
     </div>
 </div>
 @endsection
