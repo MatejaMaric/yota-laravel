@@ -39,7 +39,7 @@ It is consisted of the management building,
     3 groups of bungalows,
     auxiliary facilities,
     sports courts and the following contents.
-“Čardak“is surrounded by paths which are marked by information boards,
+“Čardak“ is surrounded by paths which are marked by information boards,
     resting places and viewpoints.
 It provides a complete stay in the nature for school children,
     university students and especially experts in biological sciences.

@@ -10,14 +10,14 @@
   @csrf      
   <div class="form-group">
     <label for="email">Email: </label>
-    <input class="form-control @error('email') is-invalid @enderror" type="email" id="email" name="email" value="{{ old('email') }}">
+    <input class="form-control @error('email') is-invalid @enderror" type="email" id="email" name="email" value="{{ old('email') }}" required>
     @error('email')
       <div class="alert alert-danger mt-2">{{ $message }}</div>
     @enderror
   </div>
   <div class="form-group">
     <label for="pw">Password: </label>
-    <input class="form-control @error('password') is-invalid @enderror" type="password" id="pw" name="password">
+    <input class="form-control @error('password') is-invalid @enderror" type="password" id="pw" name="password" required>
     @error('password')
       <div class="alert alert-danger mt-2">{{ $message }}</div>
     @enderror

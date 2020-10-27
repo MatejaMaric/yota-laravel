@@ -11,7 +11,7 @@
   <!-- SPECIAL CALL -->
 <div class="form-group">
   <label for="special-call">Special Callsign:</label>
-  <select class="form-control @error('scall') is-invalid @enderror" id="special-call" name="scall">
+  <select class="form-control @error('scall') is-invalid @enderror" id="special-call" name="scall" required>
     <option value="YT50SCWC">YT50SCWC</option>
   </select> 
   @error('scall')
@@ -22,7 +22,7 @@
   <!-- START TIME -->
 <div class="form-group">
   <label for="start-date">Start date:</label>
-  <input class="form-control @error('sdate') is-invalid @enderror" type="date" id="start-date" name="sdate">
+  <input class="form-control @error('sdate') is-invalid @enderror" type="date" id="start-date" name="sdate" required>
   @error('sdate')
     <div class="alert alert-danger mt-2">{{ $message }}</div>
   @enderror
@@ -30,7 +30,7 @@
 
 <div class="form-group">
   <label for="start-time">Start time:</label>
-  <input class="form-control @error('stime') is-invalid @enderror" type="time" id="start-time" name="stime">
+  <input class="form-control @error('stime') is-invalid @enderror" type="time" id="start-time" name="stime" required>
   @error('stime')
     <div class="alert alert-danger mt-2">{{ $message }}</div>
   @enderror
@@ -39,7 +39,7 @@
   <!-- END TIME -->
 <div class="form-group">
   <label for="end-date">End date:</label>
-  <input class="form-control @error('edate') is-invalid @enderror" type="date" id="end-date" name="edate">
+  <input class="form-control @error('edate') is-invalid @enderror" type="date" id="end-date" name="edate" required>
   @error('edate')
     <div class="alert alert-danger mt-2">{{ $message }}</div>
   @enderror
@@ -47,7 +47,7 @@
 
 <div class="form-group">
   <label for="end-time">End time:</label>
-  <input class="form-control @error('etime') is-invalid @enderror" type="time" id="end-time" name="etime">
+  <input class="form-control @error('etime') is-invalid @enderror" type="time" id="end-time" name="etime" required>
   @error('etime')
     <div class="alert alert-danger mt-2">{{ $message }}</div>
   @enderror
@@ -177,7 +177,7 @@
   <!-- OPERATOR CALL -->
 <div class="form-group">
   <label for="operator-call">Operator Callsign:</label>
-  <input class="form-control @error('ocall') is-invalid @enderror" type="text" id="operator-call" name="ocall">
+  <input class="form-control @error('ocall') is-invalid @enderror" type="text" id="operator-call" name="ocall" required>
   @error('ocall')
     <div class="alert alert-danger mt-2">{{ $message }}</div>
   @enderror
@@ -186,7 +186,7 @@
   <!-- OPERATOR NAME -->
 <div class="form-group">
   <label for="operator-name">Operator name:</label>
-  <input class="form-control @error('oname') is-invalid @enderror" type="text" id="operator-name" name="oname">
+  <input class="form-control @error('oname') is-invalid @enderror" type="text" id="operator-name" name="oname" required>
   @error('oname')
     <div class="alert alert-danger mt-2">{{ $message }}</div>
   @enderror
@@ -195,7 +195,7 @@
   <!-- OPERATOR EMAIL -->
 <div class="form-group">
   <label for="operator-email">Operator email:</label>
-  <input class="form-control @error('email') is-invalid @enderror" type="email" id="operator-email" name="email">
+  <input class="form-control @error('email') is-invalid @enderror" type="email" id="operator-email" name="email" required>
   @error('email')
     <div class="alert alert-danger mt-2">{{ $message }}</div>
   @enderror
@@ -204,7 +204,7 @@
   <!-- OPERATOR PHONE -->
 <div class="form-group">
   <label for="operator-phone">Operator phone:</label>
-  <input class="form-control @error('phone') is-invalid @enderror" type="tel" id="operator-phone" name="phone">
+  <input class="form-control @error('phone') is-invalid @enderror" type="tel" id="operator-phone" name="phone" required>
   @error('phone')
     <div class="alert alert-danger mt-2">{{ $message }}</div>
   @enderror

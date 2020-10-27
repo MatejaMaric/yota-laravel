@@ -7,6 +7,9 @@ use App\Models\Post;
 use function dd;
 use function redirect;
 
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
+
 class PagesController extends Controller
 {
     public function index(Request $request)
@@ -18,8 +21,6 @@ class PagesController extends Controller
     {
         return view('pages.sponsoring');
     }
-
-    //--------------------------------------
 
     public function news(Request $request)
     {
@@ -51,8 +52,6 @@ class PagesController extends Controller
 
     public function reserveForm(Request $request)
     {
-        //dd($request->input('modes'));
-
         $validatedData = $request->validate([
             'scall' => 'required|alphanum',
             'sdate' => 'required|date',
@@ -67,38 +66,36 @@ class PagesController extends Controller
             'phone' => ['required', 'regex:/^[0-9 ]+$/'],
         ]);
 
-/*
-            $table->id();
-            $table->boolean('approved')->default(false);
-            $table->unsignedBigInteger('specialCall');
-            $table->dateTime('fromTime');
-            $table->dateTime('toTime');
-            $table->string('frequencies', 255);
-            $table->string('modes', 255);
-            $table->string('operatorCall');
-            $table->string('operatorName');
-            $table->string('operatorEmail');
-            $table->string('operatorPhone', 50);
-            $table->integer('qso')->default(0);
-            $table->timestamps();
-            $table->foreign('specialCall')->references('id')->on('special_calls');
-*/
-
         return redirect('reserve')->with('status', 'Reservation submitted.');
     }
 
-    /**
-     * undocumented function
-     *
-     * @return void
-     */
     public function loginForm(Request $request)
     {
-        $validatedData = $request->validate([
+        $rules = [
             'email' => 'required|email',
             'password' => 'required',
-        ]);
-        return redirect('login')->with('status', 'Submitted.');
+        ];
+
+        $messages = [
+            'email.required' => 'Your email address is required.',
+            'password.required' => 'Your password is required.',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            //return redirect('login')
+            return Redirect::back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        //$validatedData = $request->validate([
+            //'email' => 'required|email',
+            //'password' => 'required',
+        //]);
+        //return redirect('login')->with('status', 'Submitted.');
+        return Redirect::back()->with('status', 'Submitted.');
     }
     
 
