@@ -40,6 +40,7 @@ Route::post('/reserve', [PagesController::class, 'reserveForm'])->name('reserveF
 
 Route::get('/login', [PagesController::class, 'login'])->name('login');
 Route::post('/login', [PagesController::class, 'loginForm'])->name('loginForm');
+Route::get('/logout', [PagesController::class, 'logout'])->name('logout');
 
 //Route::get('/about', [PagesController::class, 'about'])->name('about');
 //Route::get('/about', 'App\Http\Controllers\PagesController@about');

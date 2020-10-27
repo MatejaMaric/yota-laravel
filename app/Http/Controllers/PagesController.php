@@ -9,6 +9,7 @@ use function redirect;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
@@ -38,6 +39,12 @@ class PagesController extends Controller
     public function login(Request $request)
     {
         return view('pages.login');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return Redirect::back();
     }
 
     public function activities(Request $request)
@@ -84,7 +91,6 @@ class PagesController extends Controller
         $validator = Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()) {
-            //return redirect('login')
             return Redirect::back()
                 ->withErrors($validator)
                 ->withInput();
@@ -95,7 +101,11 @@ class PagesController extends Controller
             //'password' => 'required',
         //]);
         //return redirect('login')->with('status', 'Submitted.');
-        return Redirect::back()->with('status', 'Submitted.');
+        //return Redirect::back()->with('status', 'Submitted.');
+        if (Auth::attempt($request->only('email', 'password')))
+            return redirect()->intended(route('home'));
+        else return Redirect::back()
+            ->withErrors(['failed' => ['Bad credentials!']]);
     }
     
 

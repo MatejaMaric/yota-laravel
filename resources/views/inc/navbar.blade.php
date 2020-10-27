@@ -25,7 +25,7 @@
               <a class="dropdown-item" href="#">Reservations</a>
             </div>
           </div>
-          <a href="#" class="nav-item nav-link">Logout</a>
+          <a href="{{ route('logout') }}" class="nav-item nav-link">Logout</a>
         @else
           <a href="{{ route('login') }}" class="nav-item nav-link {{ request()->routeIs('login') ? 'active' : '' }}">Login</a>
         @endif

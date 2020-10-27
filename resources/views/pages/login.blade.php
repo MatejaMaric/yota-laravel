@@ -6,6 +6,9 @@
     {{ session('status') }}
   </div>
 @endif
+@error('failed')
+  <div class="alert alert-danger mt-2">{{ $message }}</div>
+@enderror
 <form action="{{ route('login') }}" method="POST">
   @csrf      
   <div class="form-group">
