@@ -7,6 +7,16 @@
 <h3 class="mt-3">Sponsors: </h1>
 
 <div class="row">
+    {{--<div class="col-md-2">--}}
+        {{--<a href="https://4o3a.com/" target="_blank"><img src="/imgs/4o3a.png" alt="4o3a"/></a>--}}
+    {{--</div>--}}
+    {{--<div class="col-md-2">--}}
+        {{--<a href="https://www.spiderbeam.com/" target="_blank"><img src="/imgs/spiderbeam.gif" alt="Spiderbeam"/></a>--}}
+    {{--</div>--}}
+
+    {{--<a href="https://4o3a.com/" target="_blank"><img class="col-md-2" src="/imgs/4o3a.png" alt="4o3a"/></a>--}}
+    {{--<a href="https://www.spiderbeam.com/" target="_blank"><img class="col-md-2" src="/imgs/spiderbeam.gif" alt="Spiderbeam"/></a>--}}
+
     <img class="col-md-2" src="/imgs/4o3a.png" alt="4o3a"/>
     <img class="col-md-2" src="/imgs/spiderbeam.gif" alt="Spiderbeam"/>
 </div>
