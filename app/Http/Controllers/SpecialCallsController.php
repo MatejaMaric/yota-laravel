@@ -11,12 +11,20 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Reservation;
+use App\Models\SpecialCall;
 
 class SpecialCallsController extends Controller
 {
     public function activities(Request $request)
     {
-        $activities = Reservation::all();
+        //$activities = Reservation::all();
+        $activities = Reservation::addSelect([
+            'specialCall' => SpecialCall::select('sign')
+                //->whereColumn('reservations.specialCall', 'special_calls.id')
+                ->whereColumn('specialCall', 'id')
+                ->limit(1)
+        ])->get();
+
         return view('pages.activities', compact('activities'));
     }
 
@@ -71,11 +79,11 @@ class SpecialCallsController extends Controller
 
         $reservation = new Reservation();
 
-        $reservation->specialCall = 1;
-        $reservation->fromTime = $request->sdate . ' ' . $request->stime;
-        $reservation->toTime   = $request->edate . ' ' . $request->etime;
-        $reservation->frequencies = implode(', ', $request->freqs);
-        $reservation->modes       = implode(', ', $request->modes);
+        $reservation->specialCall   = 2;
+        $reservation->fromTime      = $request->sdate . ' ' . $request->stime;
+        $reservation->toTime        = $request->edate . ' ' . $request->etime;
+        $reservation->frequencies   = implode(', ', $request->freqs);
+        $reservation->modes         = implode(', ', $request->modes);
         $reservation->operatorCall  = $request->ocall;
         $reservation->operatorName  = $request->oname;
         $reservation->operatorEmail = $request->email;
