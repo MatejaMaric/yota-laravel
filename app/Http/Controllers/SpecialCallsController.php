@@ -17,7 +17,7 @@ class SpecialCallsController extends Controller
 {
     public function activities(Request $request)
     {
-        $activities = Reservation::all();
+        $activities = Reservation::where('approved', '1')->get();
         //$activities = Reservation::addSelect([
             //'specialCall' => SpecialCall::select('sign')
                 ////->whereColumn('reservations.specialCall', 'special_calls.id')

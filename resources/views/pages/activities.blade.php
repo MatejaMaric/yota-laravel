@@ -5,7 +5,7 @@
 @section('navbar', View::make('inc.special_navbar'))
 
 @section('content')
-@if (isset($activities))
+@if (count($activities) > 0)
 <div class="table-responsive">
     <table class="table table-striped table-bordered"><!-- table-hover -->
         <thead class="thead-dark">
