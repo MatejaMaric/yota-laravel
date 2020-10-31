@@ -40,6 +40,19 @@ Route::get('/special-calls', [SpecialCallsController::class, 'activities'])->nam
 Route::get('/special-calls/reserve', [SpecialCallsController::class, 'reserve'])->name('reserve');
 Route::post('/special-calls/reserve', [SpecialCallsController::class, 'reserveForm'])->name('reserveForm');
 
+
+Route::get('/special-calls/add', [SpecialCallsController::class, 'add'])->name('addSign')
+    ->middleware(['auth']);
+Route::post('/special-calls/add', [SpecialCallsController::class, 'addForm'])->name('addSignForm')
+    ->middleware(['auth']);
+
+
+Route::get('/special-calls/reservations', [SpecialCallsController::class, 'reservations'])->name('reservations')
+    ->middleware(['auth']);
+Route::post('/special-calls/reservations', [SpecialCallsController::class, 'reservationsForm'])->name('reservationsForm')
+    ->middleware(['auth']);
+
+
 Route::get('/login', [PagesController::class, 'login'])->name('login');
 Route::post('/login', [PagesController::class, 'loginForm'])->name('loginForm');
 Route::get('/logout', [PagesController::class, 'logout'])->name('logout');

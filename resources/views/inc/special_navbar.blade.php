@@ -17,8 +17,8 @@
               Administration
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Callsigns</a>
-              <a class="dropdown-item" href="#">Reservations</a>
+              <a class="dropdown-item" href="{{ route('addSign') }}">Callsigns</a>
+              <a class="dropdown-item" href="{{ route('reservations') }}">Reservations</a>
             </div>
           </div>
           <a href="{{ route('logout') }}" class="nav-item nav-link">Logout</a>

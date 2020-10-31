@@ -94,4 +94,24 @@ class SpecialCallsController extends Controller
 
         return redirect()->route('reserve')->with('status', 'Reservation submitted.');
     }
+
+    public function add(Request $request)
+    {
+        return view('pages.callsigns');
+    }
+    
+    public function addForm(Request $request)
+    {
+        return Redirect::back();
+    }
+
+    public function reservations(Request $request)
+    {
+        return view('pages.reservations');
+    }
+
+    public function reservationsForm(Request $request)
+    {
+        return Redirect::back();
+    }
 }
