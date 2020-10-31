@@ -2,6 +2,8 @@
 
 @section('title', 'Special Calls - Activities')
 
+@section('navbar', View::make('inc.special_navbar'))
+
 @section('content')
 @if (1==2)
 <div class="table-responsive">

@@ -2,6 +2,8 @@
 
 @section('title', 'Make reservation')
 
+@section('navbar', View::make('inc.special_navbar'))
+
 @section('content')
   @if (session('status'))
     <div class="alert alert-success">

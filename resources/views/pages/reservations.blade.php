@@ -2,6 +2,8 @@
 
 @section('title', 'Reservations')
 
+@section('navbar', View::make('inc.special_navbar'))
+
 @section('content')
 <div class="table-responsive">
     <table class="table table-striped table-bordered"><!-- table-hover -->

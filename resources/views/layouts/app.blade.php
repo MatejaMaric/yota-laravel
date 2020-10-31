@@ -11,7 +11,7 @@
         <title>YOTA - @yield('title')</title>
     </head>
     <body>
-        @include('inc.navbar')
+        @yield('navbar', View::make('inc.navbar'))
         @yield('jumbotron')
         <div class="container pt-3">
             @yield('content')
