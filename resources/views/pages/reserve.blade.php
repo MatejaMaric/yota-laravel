@@ -21,7 +21,10 @@
 <div class="form-group">
   <label for="special-call">Special Callsign:</label>
   <select class="form-control @error('scall') is-invalid @enderror" id="special-call" name="scall" required>
-    <option value="YT50SCWC">YT50SCWC</option>
+    {{--<option value="YT50SCWC">YT50SCWC</option>--}}
+    @foreach ($signs as $sign)
+      <option value="{{ $sign->sign }}">{{ $sign->sign }}</option>
+    @endforeach
   </select> 
   @error('scall')
     <div class="alert alert-danger mt-2">{{ $message }}</div>

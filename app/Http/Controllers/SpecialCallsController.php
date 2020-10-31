@@ -17,20 +17,21 @@ class SpecialCallsController extends Controller
 {
     public function activities(Request $request)
     {
-        //$activities = Reservation::all();
-        $activities = Reservation::addSelect([
-            'specialCall' => SpecialCall::select('sign')
-                //->whereColumn('reservations.specialCall', 'special_calls.id')
-                ->whereColumn('specialCall', 'id')
-                ->limit(1)
-        ])->get();
+        $activities = Reservation::all();
+        //$activities = Reservation::addSelect([
+            //'specialCall' => SpecialCall::select('sign')
+                ////->whereColumn('reservations.specialCall', 'special_calls.id')
+                //->whereColumn('specialCall', 'id')
+                //->limit(1)
+        //])->get();
 
         return view('pages.activities', compact('activities'));
     }
 
     public function reserve(Request $request)
     {
-        return view('pages.reserve');
+        $signs = SpecialCall::all();
+        return view('pages.reserve', compact('signs'));
     }
 
     public function reserveForm(Request $request)
@@ -79,7 +80,7 @@ class SpecialCallsController extends Controller
 
         $reservation = new Reservation();
 
-        $reservation->specialCall   = 2;
+        $reservation->specialCall   = $request->scall;
         $reservation->fromTime      = $request->sdate . ' ' . $request->stime;
         $reservation->toTime        = $request->edate . ' ' . $request->etime;
         $reservation->frequencies   = implode(', ', $request->freqs);
