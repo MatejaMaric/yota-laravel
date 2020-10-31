@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'News')
+
 @section('content')
     @foreach($news as $post)
         <div class="well">

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Reservations')
+
 @section('content')
 <div class="table-responsive">
     <table class="table table-striped table-bordered"><!-- table-hover -->

@@ -18,11 +18,6 @@ class PagesController extends Controller
         return view('pages.index');
     }
 
-    public function sponsoring(Request $request)
-    {
-        return view('pages.sponsoring');
-    }
-
     public function news(Request $request)
     {
         $news = Post::all();
@@ -36,44 +31,15 @@ class PagesController extends Controller
         return view('pages.gallery');
     }
 
+    public function sponsoring(Request $request)
+    {
+        return view('pages.sponsoring');
+    }
+
+    // LOGIN SYSTEM
     public function login(Request $request)
     {
         return view('pages.login');
-    }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        return Redirect::back();
-    }
-
-    public function activities(Request $request)
-    {
-        return view('pages.activities');
-    }
-
-    public function reserve(Request $request)
-    {
-        return view('pages.reserve');
-    }
-
-    public function reserveForm(Request $request)
-    {
-        $validatedData = $request->validate([
-            'scall' => 'required|alphanum',
-            'sdate' => 'required|date',
-            'stime' => 'required',
-            'edate' => 'required|date',
-            'etime' => 'required',
-            'freqs' => 'required',
-            'modes' => 'required',
-            'ocall' => 'required|alphanum',
-            'oname' => 'required',
-            'email' => 'required|email',
-            'phone' => ['required', 'regex:/^[0-9 ]+$/'],
-        ]);
-
-        return redirect('reserve')->with('status', 'Reservation submitted.');
     }
 
     public function loginForm(Request $request)
@@ -107,8 +73,14 @@ class PagesController extends Controller
         else return Redirect::back()
             ->withErrors(['failed' => ['Bad credentials!']]);
     }
-    
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return Redirect::back();
+    }
+    
+    // NOTES
     //public function services()
     //{
         ////$title = 'Some title';

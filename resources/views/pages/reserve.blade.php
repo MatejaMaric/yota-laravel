@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Make reservation')
+
 @section('content')
   @if (session('status'))
     <div class="alert alert-success">

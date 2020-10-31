@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Special Calls - Activities')
+
 @section('content')
 @if (1==2)
 <div class="table-responsive">

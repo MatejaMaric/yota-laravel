@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Home')
+
 @section('jumbotron')
 {{--<div class="jumbotron jumbotron-fluid bg-cover" style="background-image: url('/imgs/yota.jpg'); background-size: cover; background-repeat: no-repeat;">--}}
 <div class="jumbotron">
