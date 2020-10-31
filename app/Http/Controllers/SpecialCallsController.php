@@ -38,6 +38,6 @@ class SpecialCallsController extends Controller
             'phone' => ['required', 'regex:/^[0-9 ]+$/'],
         ]);
 
-        return redirect('reserve')->with('status', 'Reservation submitted.');
+        return redirect()->route('reserve')->with('status', 'Reservation submitted.');
     }
 }

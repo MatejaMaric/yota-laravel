@@ -20,8 +20,10 @@ class PagesController extends Controller
 
     public function news(Request $request)
     {
-        $news = Post::all();
+        $news = Post::orderBy('created_at', 'desc')->get();
 
+        //$data = ['news' => $news];
+        //return view('pages.news')->with($data);
         //return view('pages.news')->with('news', $news);
         return view('pages.news', compact('news'));
     }
@@ -79,24 +81,4 @@ class PagesController extends Controller
         Auth::logout();
         return Redirect::back();
     }
-    
-    // NOTES
-    //public function services()
-    //{
-        ////$title = 'Some title';
-        ////return view('pages.index', compact('title'));
-        //$data = [
-            //'title' => 'Services',
-            //'services' => ['Web design', 'Programming', 'SEO']
-        //];
-        //return view('pages.services')->with($data);
-    //}
-
-    //public function about()
-    //{
-        ////$title = 'About';
-        ////return view('pages.index')->with('title', $title);
-        //$data = ['title' => 'About'];
-        //return view('pages.index')->with($data);
-    //}
 }
