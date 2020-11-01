@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\SpecialCallsController;
 
 /*
@@ -20,9 +22,9 @@ Route::get('/news', [PagesController::class, 'news'])->name('news');
 Route::get('/gallery', [PagesController::class, 'gallery'])->name('gallery');
 Route::get('/sponsoring', [PagesController::class, 'sponsoring'])->name('sponsoring');
 
-Route::get('/special-calls', [SpecialCallsController::class, 'activities'])->name('activities');
-Route::get('/special-calls/reserve', [SpecialCallsController::class, 'reserve'])->name('reserve');
-Route::post('/special-calls/reserve', [SpecialCallsController::class, 'reserveForm'])->name('reserveForm');
+Route::get('/special-calls', [PagesController::class, 'activities'])->name('activities');
+Route::get('/special-calls/reserve', [ReservationsController::class, 'reserve'])->name('reserve');
+Route::post('/special-calls/reserve', [ReservationsController::class, 'reserveForm'])->name('reserveForm');
 
 
 Route::get('/special-calls/add', [SpecialCallsController::class, 'add'])->name('addSign')
@@ -36,12 +38,13 @@ Route::post('/special-calls/edit/{id}', [SpecialCallsController::class, 'editFor
     ->middleware(['auth']);
 
 
-Route::get('/special-calls/reservations', [SpecialCallsController::class, 'reservations'])->name('reservations')
+Route::get('/special-calls/reservations', [ReservationsController::class, 'reservations'])->name('reservations')
     ->middleware(['auth']);
-Route::post('/special-calls/reservations', [SpecialCallsController::class, 'reservationsForm'])->name('reservationsForm')
+Route::post('/special-calls/reservations', [ReservationsController::class, 'reservationsForm'])->name('reservationsForm')
     ->middleware(['auth']);
 
 
-Route::get('/login', [PagesController::class, 'login'])->name('login');
-Route::post('/login', [PagesController::class, 'loginForm'])->name('loginForm');
-Route::get('/logout', [PagesController::class, 'logout'])->name('logout');
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login', [LoginController::class, 'loginForm'])->name('loginForm');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
