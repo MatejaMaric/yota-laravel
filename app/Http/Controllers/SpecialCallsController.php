@@ -107,7 +107,8 @@ class SpecialCallsController extends Controller
 
     public function reservations(Request $request)
     {
-        return view('pages.reservations');
+        $data = Reservation::all();
+        return view('pages.reservations', compact('data'));
     }
 
     public function reservationsForm(Request $request)
