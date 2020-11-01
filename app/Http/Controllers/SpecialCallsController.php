@@ -97,7 +97,8 @@ class SpecialCallsController extends Controller
 
     public function add(Request $request)
     {
-        return view('pages.callsigns');
+        $data = SpecialCall::all();
+        return view('pages.callsigns', compact('data'));
     }
     
     public function addForm(Request $request)
