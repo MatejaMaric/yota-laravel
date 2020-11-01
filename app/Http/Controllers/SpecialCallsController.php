@@ -36,7 +36,7 @@ class SpecialCallsController extends Controller
         $newcall->description = $request->description;
         $newcall->saveOrFail();
 
-        return Redirect::back()->with('status', 'Callsign added.');
+        return Redirect::back()->with('status', "Special callsign added.");
     }
 
     public function edit(Request $request, int $id)
@@ -47,21 +47,34 @@ class SpecialCallsController extends Controller
     
     public function editForm(Request $request, int $id)
     {
-        $rules = [ 'sign' => 'required' ];
-        $messages = [ 'sign.required' => 'You need to provide a callsign!' ];
-        $validator = Validator::make($request->all(), $rules, $messages);
+        //dd($request->input('submit'));
+        if ($request->input('submit') == 'Edit callsign') {
+            $rules = [ 'sign' => 'required' ];
+            $messages = [ 'sign.required' => 'You need to provide a callsign!' ];
+            $validator = Validator::make($request->all(), $rules, $messages);
 
-        if ($validator->fails()) {
-            return Redirect::back()
-                ->withErrors($validator)
-                ->withInput();
-        }
+            if ($validator->fails()) {
+                return Redirect::back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
 
-        $data = SpecialCall::findOrFail($id);
-        $data->sign = strtoupper($request->sign);
-        $data->description = $request->description;
-        $data->saveOrFail();
+            $data = SpecialCall::findOrFail($id);
+            $data->sign = strtoupper($request->sign);
+            $data->description = $request->description;
+            $data->saveOrFail();
 
-        return Redirect::back()->with('statusE', 'Callsign edited.');
+            return Redirect::route('addSign')->with('statusE', "Special callsign edited.");
+        } else return Redirect::route('addSign');
     }
+
+    public function delete(Request $request, int $id)
+    {
+        //SpecialCall::findOrFail($id)->delete();
+        $sign = SpecialCall::findOrFail($id);
+        $call = $sign->sign;
+        $sign->delete();
+        return Redirect::back()->with('statusE', "Special callsign $call deleted.");
+    }
+    
 }

@@ -11,7 +11,7 @@
         {{ session('status') }}
       </div>
     @endif
-    <form action="{{ route('editForm', request()->route()->parameter('id')) }}" method="POST">
+    <form action="{{ route('editSignForm', request()->route()->parameter('id')) }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="Sign">Special Callsign:</label>

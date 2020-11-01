@@ -5,19 +5,26 @@
 @section('navbar', View::make('inc.special_navbar'))
 
 @section('content')
+    <h3>Callsigns Administration:</h3>
+    @if (session('statusE'))
+      <div class="alert alert-success">
+        {{ session('statusE') }}
+      </div>
+    @endif
     @if (count($data) > 0)
-        <h3>Callsigns Administration:</h3>
         <div class="p-0 mt-3 col-lg-6 table-responsive">
             <table class="table table-bordered">
                 @foreach ($data as $row)
                     <tr>
                         <td class="align-middle">{{ $row->sign }}</td>
-                        <td><a href="{{ route('edit', $row->id) }}" class="btn btn-warning">Edit</a></td>
-                        <td><button class="btn btn-danger">Delete</button></td>
+                        <td><a href="{{ route('editSign', $row->id) }}" class="btn btn-warning">Edit</a></td>
+                        <td><a href="{{ route('deleteSign', $row->id) }}" class="btn btn-danger">Delete</a></td>
                     </tr>
                 @endforeach
             </table>
         </div>
+    @else
+        <strong>There are currently no callsigns.</strong>
     @endif
 
     <h3 class="mt-4">Add Callsign:</h3>

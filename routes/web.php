@@ -32,9 +32,12 @@ Route::get('/special-calls/add', [SpecialCallsController::class, 'add'])->name('
 Route::post('/special-calls/add', [SpecialCallsController::class, 'addForm'])->name('addSignForm')
     ->middleware(['auth']);
 
-Route::get('/special-calls/edit/{id}', [SpecialCallsController::class, 'edit'])->name('edit')
+Route::get('/special-calls/edit/{id}', [SpecialCallsController::class, 'edit'])->name('editSign')
     ->middleware(['auth']);
-Route::post('/special-calls/edit/{id}', [SpecialCallsController::class, 'editForm'])->name('editForm')
+Route::post('/special-calls/edit/{id}', [SpecialCallsController::class, 'editForm'])->name('editSignForm')
+    ->middleware(['auth']);
+
+Route::get('/special-calls/delete/{id}', [SpecialCallsController::class, 'delete'])->name('deleteSign')
     ->middleware(['auth']);
 
 
