@@ -12,7 +12,7 @@
                 @foreach ($data as $row)
                     <tr>
                         <td class="align-middle">{{ $row->sign }}</td>
-                        <td><button class="btn btn-warning">Edit</button></td>
+                        <td><a href="{{ route('edit', $row->id) }}" class="btn btn-warning">Edit</a></td>
                         <td><button class="btn btn-danger">Delete</button></td>
                     </tr>
                 @endforeach

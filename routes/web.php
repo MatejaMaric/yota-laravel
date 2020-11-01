@@ -46,6 +46,11 @@ Route::get('/special-calls/add', [SpecialCallsController::class, 'add'])->name('
 Route::post('/special-calls/add', [SpecialCallsController::class, 'addForm'])->name('addSignForm')
     ->middleware(['auth']);
 
+Route::get('/special-calls/edit/{id}', [SpecialCallsController::class, 'edit'])->name('edit')
+    ->middleware(['auth']);
+Route::post('/special-calls/edit/{id}', [SpecialCallsController::class, 'editForm'])->name('editForm')
+    ->middleware(['auth']);
+
 
 Route::get('/special-calls/reservations', [SpecialCallsController::class, 'reservations'])->name('reservations')
     ->middleware(['auth']);
