@@ -103,7 +103,22 @@ class SpecialCallsController extends Controller
     
     public function addForm(Request $request)
     {
-        return Redirect::back();
+        $rules = [ 'sign' => 'required' ];
+        $messages = [ 'sign.required' => 'You need to provide a callsign!' ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $newcall = new SpecialCall();
+        $newcall->sign = strtoupper($request->sign);
+        $newcall->description = $request->description;
+        $newcall->saveOrFail();
+
+        return Redirect::back()->with('status', 'Callsign added.');
     }
 
     public function reservations(Request $request)

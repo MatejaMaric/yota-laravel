@@ -16,7 +16,7 @@ class CreateSpecialCallsTable extends Migration
         Schema::create('special_calls', function (Blueprint $table) {
             $table->id();
             $table->string('sign')->unique();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

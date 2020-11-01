@@ -5,6 +5,7 @@
 @section('navbar', View::make('inc.special_navbar'))
 
 @section('content')
+@if (count($data) > 0)
 <div class="table-responsive">
     <table class="table table-striped table-bordered" style="white-space:nowrap;"><!-- table-hover -->
         <thead class="thead-dark">
@@ -49,4 +50,9 @@
         </tbody>
     </table>
 </div>
+@else
+<div class="text-center">
+    <strong>There are currently no reservations.</strong>
+</div>
+@endif
 @endsection()
