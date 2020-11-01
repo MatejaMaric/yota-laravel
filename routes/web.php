@@ -15,22 +15,6 @@ use App\Http\Controllers\SpecialCallsController;
 |
 */
 
-//Route::get('/', function () {
-    //return view('welcome');
-//});
-
-//Route::get('/hello', function () {
-    //return "Hello World!";
-//});
-
-//Route::get('/hello/{id}/{name}', function ($id, $name) {
-    //return "#$id: Hello $name!";
-//});
-
-//Route::get('/about', function () {
-    //return view('about');
-//});
-
 Route::get('/', [PagesController::class, 'index'])->name('home');
 Route::get('/news', [PagesController::class, 'news'])->name('news');
 Route::get('/gallery', [PagesController::class, 'gallery'])->name('gallery');
@@ -61,6 +45,3 @@ Route::post('/special-calls/reservations', [SpecialCallsController::class, 'rese
 Route::get('/login', [PagesController::class, 'login'])->name('login');
 Route::post('/login', [PagesController::class, 'loginForm'])->name('loginForm');
 Route::get('/logout', [PagesController::class, 'logout'])->name('logout');
-
-//Route::get('/about', [PagesController::class, 'about'])->name('about');
-//Route::get('/about', 'App\Http\Controllers\PagesController@about');
