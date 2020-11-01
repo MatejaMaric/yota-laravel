@@ -26,18 +26,22 @@
             </tr>
             @foreach ($data as $row)
                 <tr>
-                    <td>{{ $row->id }}</td>
-                    <td>{{ $row->approved }}</td>
-                    <td>{{ $row->operatorCall }}</td>
-                    <td>{{ $row->qso }}</td>
-                    <td>{{ $row->fromTime }}</td>
-                    <td>{{ $row->toTime }}</td>
-                    <td>{{ $row->frequencies }}</td>
-                    <td>{{ $row->modes }}</td>
-                    <td>{{ $row->specialCall }}</td>
-                    <td>{{ $row->operatorName }}</td>
-                    <td>{{ $row->operatorEmail }}</td>
-                    <td>{{ $row->operatorPhone }}</td>
+                    <td class="align-middle">{{ $row->id }}</td>
+                    @if ($row->approved)
+                       <td class="align-middle"><input type="checkbox" checked></td> 
+                    @else
+                       <td class="align-middle"><input type="checkbox"></td> 
+                    @endif
+                    <td class="align-middle">{{ $row->operatorCall }}</td>
+                    <td class="align-middle">{{ $row->qso }}</td>
+                    <td class="align-middle">{{ $row->fromTime }}</td>
+                    <td class="align-middle">{{ $row->toTime }}</td>
+                    <td class="align-middle">{{ $row->frequencies }}</td>
+                    <td class="align-middle">{{ $row->modes }}</td>
+                    <td class="align-middle">{{ $row->specialCall }}</td>
+                    <td class="align-middle">{{ $row->operatorName }}</td>
+                    <td class="align-middle">{{ $row->operatorEmail }}</td>
+                    <td class="align-middle">{{ $row->operatorPhone }}</td>
                     <td>
                         <button class="btn btn-primary">Update</button>
                         <button class="btn btn-warning">Restore</button>

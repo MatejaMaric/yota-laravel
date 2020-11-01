@@ -47,7 +47,6 @@ class SpecialCallsController extends Controller
     
     public function editForm(Request $request, int $id)
     {
-        //dd($request->input('submit'));
         if ($request->input('submit') == 'Edit callsign') {
             $rules = [ 'sign' => 'required' ];
             $messages = [ 'sign.required' => 'You need to provide a callsign!' ];
