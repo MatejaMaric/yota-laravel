@@ -15,7 +15,7 @@
         @csrf
         <div class="form-group">
             <label for="Sign">Special Callsign:</label>
-            <input type="text" name="sign" value="{{ ols('sign') ?? $data->sign }}" id="Sign" class="form-control">
+            <input type="text" name="sign" value="{{ old('sign') ?? $data->sign }}" id="Sign" class="form-control">
             @error('sign')
               <div class="alert alert-danger mt-2">{{ $message }}</div>
             @enderror
