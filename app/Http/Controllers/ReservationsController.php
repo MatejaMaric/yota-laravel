@@ -14,13 +14,26 @@ use App\Models\SpecialCall;
 
 class ReservationsController extends Controller
 {
-    public function reserve(Request $request)
+    public function index(Request $request)
+    {
+        $activities = Reservation::where('approved', '1')->get();
+        //$activities = Reservation::addSelect([
+            //'specialCall' => SpecialCall::select('sign')
+                ////->whereColumn('reservations.specialCall', 'special_calls.id')
+                //->whereColumn('specialCall', 'id')
+                //->limit(1)
+        //])->get();
+
+        return view('pages.activities', compact('activities'));
+    }
+
+    public function create(Request $request)
     {
         $signs = SpecialCall::all();
         return view('pages.reserve', compact('signs'));
     }
 
-    public function reserveForm(Request $request)
+    public function store(Request $request)
     {
         //$validatedData = $request->validate([
             //...
@@ -72,13 +85,13 @@ class ReservationsController extends Controller
     }
 
     // Administration
-    public function reservations(Request $request)
+    public function edit(Request $request)
     {
         $data = Reservation::all();
         return view('pages.reservations', compact('data'));
     }
 
-    public function reservationsForm(Request $request)
+    public function update(Request $request)
     {
         return Redirect::back();
     }

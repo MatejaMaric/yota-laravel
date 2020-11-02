@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\SpecialCallsController;
@@ -18,33 +19,32 @@ use App\Http\Controllers\SpecialCallsController;
 */
 
 Route::get('/', [PagesController::class, 'index'])->name('home');
-Route::get('/news', [PagesController::class, 'news'])->name('news');
-Route::get('/gallery', [PagesController::class, 'gallery'])->name('gallery');
 Route::get('/sponsoring', [PagesController::class, 'sponsoring'])->name('sponsoring');
 
-Route::get('/special-calls', [PagesController::class, 'activities'])->name('activities');
-Route::get('/special-calls/reserve', [ReservationsController::class, 'reserve'])->name('reserve');
-Route::post('/special-calls/reserve', [ReservationsController::class, 'reserveForm'])->name('reserveForm');
+
+Route::get('/news', [NewsController::class, 'index'])->name('news');
+Route::get('/news/add', [NewsController::class, 'create'])->name('newsAdd')->middleware(['auth']);
+Route::post('/news/add', [NewsController::class, 'store'])->name('newsAddForm')->middleware(['auth']);
+Route::get('/news/edit/{id}', [NewsController::class, 'edit'])->name('newsEdit')->middleware(['auth']);
+Route::post('/news/edit/{id}', [NewsController::class, 'update'])->name('newsEditForm')->middleware(['auth']);
+Route::get('/news/delete/{id}', [NewsController::class, 'delete'])->name('newsDelete')->middleware(['auth']);
 
 
-Route::get('/special-calls/add', [SpecialCallsController::class, 'add'])->name('addSign')
-    ->middleware(['auth']);
-Route::post('/special-calls/add', [SpecialCallsController::class, 'addForm'])->name('addSignForm')
-    ->middleware(['auth']);
-
-Route::get('/special-calls/edit/{id}', [SpecialCallsController::class, 'edit'])->name('editSign')
-    ->middleware(['auth']);
-Route::post('/special-calls/edit/{id}', [SpecialCallsController::class, 'editForm'])->name('editSignForm')
-    ->middleware(['auth']);
-
-Route::get('/special-calls/delete/{id}', [SpecialCallsController::class, 'delete'])->name('deleteSign')
-    ->middleware(['auth']);
+Route::get('/gallery', [PagesController::class, 'gallery'])->name('gallery');
 
 
-Route::get('/special-calls/reservations', [ReservationsController::class, 'reservations'])->name('reservations')
-    ->middleware(['auth']);
-Route::post('/special-calls/reservations', [ReservationsController::class, 'reservationsForm'])->name('reservationsForm')
-    ->middleware(['auth']);
+Route::get('/special-calls', [ReservationsController::class, 'index'])->name('activities');
+Route::get('/special-calls/reserve', [ReservationsController::class, 'create'])->name('reserve');
+Route::post('/special-calls/reserve', [ReservationsController::class, 'store'])->name('reserveForm');
+Route::get('/special-calls/reservations', [ReservationsController::class, 'edit'])->name('reservations')->middleware(['auth']);
+Route::post('/special-calls/reservations', [ReservationsController::class, 'update'])->name('reservationsForm')->middleware(['auth']);
+
+
+Route::get('/special-calls/add', [SpecialCallsController::class, 'create'])->name('addSign')->middleware(['auth']);
+Route::post('/special-calls/add', [SpecialCallsController::class, 'store'])->name('addSignForm')->middleware(['auth']);
+Route::get('/special-calls/edit/{id}', [SpecialCallsController::class, 'edit'])->name('editSign')->middleware(['auth']);
+Route::post('/special-calls/edit/{id}', [SpecialCallsController::class, 'update'])->name('editSignForm')->middleware(['auth']);
+Route::get('/special-calls/delete/{id}', [SpecialCallsController::class, 'delete'])->name('deleteSign')->middleware(['auth']);
 
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');

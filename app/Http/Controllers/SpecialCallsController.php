@@ -13,13 +13,13 @@ use App\Models\SpecialCall;
 
 class SpecialCallsController extends Controller
 {
-    public function add(Request $request)
+    public function create(Request $request)
     {
         $data = SpecialCall::all();
         return view('pages.callsigns', compact('data'));
     }
     
-    public function addForm(Request $request)
+    public function store(Request $request)
     {
         $rules = [ 'sign' => 'required' ];
         $messages = [ 'sign.required' => 'You need to provide a callsign!' ];
@@ -45,7 +45,7 @@ class SpecialCallsController extends Controller
         return view('pages.editsign', compact('data'));
     }
     
-    public function editForm(Request $request, int $id)
+    public function update(Request $request, int $id)
     {
         if ($request->input('submit') == 'Edit callsign') {
             $rules = [ 'sign' => 'required' ];
