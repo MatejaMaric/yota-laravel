@@ -27,7 +27,7 @@ Route::get('/news/add', [NewsController::class, 'create'])->name('newsAdd')->mid
 Route::post('/news/add', [NewsController::class, 'store'])->name('newsAddForm')->middleware(['auth']);
 Route::get('/news/edit/{id}', [NewsController::class, 'edit'])->name('newsEdit')->middleware(['auth']);
 Route::post('/news/edit/{id}', [NewsController::class, 'update'])->name('newsEditForm')->middleware(['auth']);
-Route::get('/news/delete/{id}', [NewsController::class, 'delete'])->name('newsDelete')->middleware(['auth']);
+Route::get('/news/delete/{id}', [NewsController::class, 'destroy'])->name('newsDelete')->middleware(['auth']);
 
 
 Route::get('/gallery', [PagesController::class, 'gallery'])->name('gallery');
@@ -44,7 +44,7 @@ Route::get('/special-calls/add', [SpecialCallsController::class, 'create'])->nam
 Route::post('/special-calls/add', [SpecialCallsController::class, 'store'])->name('addSignForm')->middleware(['auth']);
 Route::get('/special-calls/edit/{id}', [SpecialCallsController::class, 'edit'])->name('editSign')->middleware(['auth']);
 Route::post('/special-calls/edit/{id}', [SpecialCallsController::class, 'update'])->name('editSignForm')->middleware(['auth']);
-Route::get('/special-calls/delete/{id}', [SpecialCallsController::class, 'delete'])->name('deleteSign')->middleware(['auth']);
+Route::get('/special-calls/delete/{id}', [SpecialCallsController::class, 'destroy'])->name('deleteSign')->middleware(['auth']);
 
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');

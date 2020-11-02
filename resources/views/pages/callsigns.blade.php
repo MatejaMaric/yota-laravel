@@ -37,7 +37,7 @@
         @csrf
         <div class="form-group">
             <label for="Sign">Special Callsign:</label>
-            <input type="text" name="sign" value="" id="Sign" class="form-control">
+            <input type="text" name="sign" value="" id="Sign" class="form-control" required>
             @error('sign')
               <div class="alert alert-danger mt-2">{{ $message }}</div>
             @enderror

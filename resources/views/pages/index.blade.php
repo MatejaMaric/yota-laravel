@@ -32,7 +32,7 @@ Here one can get information and seek help,
     take the advertising materials,
     buy authentic souvenirs and prepare local or international projects.
 </p><p>
-<strong>School-recreational center “The Sand Pits of Deliblato“– “Čardak”</strong> is situated in the forest part of The Sand Pits,
+<strong>School-recreational center “The Sand Pits of Deliblato“ – “Čardak”</strong> is situated in the forest part of The Sand Pits,
     only 7 kilometers away from the village Deliblato.
 It is consisted of the management building,
     restaurant (for 500 people),

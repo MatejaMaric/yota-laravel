@@ -67,7 +67,7 @@ class SpecialCallsController extends Controller
         } else return Redirect::route('addSign');
     }
 
-    public function delete(Request $request, int $id)
+    public function destroy(Request $request, int $id)
     {
         //SpecialCall::findOrFail($id)->delete();
         $sign = SpecialCall::findOrFail($id);

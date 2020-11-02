@@ -20,7 +20,7 @@
               Administration
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">News</a>
+              <a class="dropdown-item" href="{{ route('newsAdd') }}">News</a>
               <a class="dropdown-item" href="#">Gallery</a>
             </div>
           </div>
