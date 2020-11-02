@@ -15,14 +15,14 @@
         @csrf
         <div class="form-group">
             <label for="Sign">Special Callsign:</label>
-            <input type="text" name="sign" value="{{ $data->sign }}" id="Sign" class="form-control">
+            <input type="text" name="sign" value="{{ ols('sign') ?? $data->sign }}" id="Sign" class="form-control">
             @error('sign')
               <div class="alert alert-danger mt-2">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             <label for="editor">Description:</label>
-            <textarea name="description" id="editor" class="form-control">{{ $data->description }}</textarea>
+            <textarea name="description" id="editor" class="form-control">{{ old('description') ?? $data->description }}</textarea>
         </div>
         <div class="form-group">
             <input type="submit" name="submit" value="Edit callsign" class="btn btn-primary">
