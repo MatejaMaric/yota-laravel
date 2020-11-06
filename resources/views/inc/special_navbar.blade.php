@@ -13,9 +13,9 @@
         <div class="navbar-nav ml-auto">
         @if (Auth::check())
           <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Administration
-            </a>
+            </span>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="{{ route('addSign') }}">Callsigns</a>
               <a class="dropdown-item" href="{{ route('reservations') }}">Reservations</a>

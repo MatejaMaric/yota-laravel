@@ -16,12 +16,12 @@
         <div class="navbar-nav ml-auto">
         @if (Auth::check())
           <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Administration
-            </a>
+            </span>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="{{ route('newsAdd') }}">News</a>
-              <a class="dropdown-item" href="#">Gallery</a>
+              <a class="dropdown-item" href="{{ route('galleryAdd') }}">Gallery</a>
             </div>
           </div>
           <a href="{{ route('logout') }}" class="nav-item nav-link">Logout</a>

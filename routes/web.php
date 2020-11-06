@@ -32,6 +32,9 @@ Route::get('/news/delete/{id}', [NewsController::class, 'destroy'])->name('newsD
 
 
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
+Route::get('/gallery/add', [GalleryController::class, 'create'])->name('galleryAdd')->middleware(['auth']);
+Route::post('/gallery/add', [GalleryController::class, 'create'])->name('galleryAddForm')->middleware(['auth']);
+Route::get('/gallery/delete/{id}', [GalleryController::class, 'destroy'])->name('galleryDelete')->middleware(['auth']);
 
 
 Route::get('/special-calls', [ReservationsController::class, 'index'])->name('activities');
