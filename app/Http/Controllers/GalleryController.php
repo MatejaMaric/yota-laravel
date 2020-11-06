@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use dd;
+
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+
+use App\Models\Image;
+
 class GalleryController extends Controller
 {
     /**
@@ -34,7 +41,21 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'images' => 'required'
+        ]);
+        $images = $request->file('images');
+        foreach ($images as $image) {
+            $save = new Image();
+            $save->path = 'imgs/';
+            $save->name = time() . '.' . $image->getClientOriginalExtension();
+
+            $image->storeAs($save->path, $save->name);
+
+            $save->save();
+        }
+
+        return Redirect::back();
     }
 
     /**
@@ -79,6 +100,6 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Redirect::back();
     }
 }
