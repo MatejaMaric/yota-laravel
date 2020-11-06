@@ -46,12 +46,13 @@ class GalleryController extends Controller
         ]);
         $images = $request->file('images');
         foreach ($images as $image) {
+            $path = 'imgs/';
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            $image->move($path, $name);
+
             $save = new Image();
-            $save->path = 'imgs/';
-            $save->name = time() . '.' . $image->getClientOriginalExtension();
-
-            $image->storeAs($save->path, $save->name);
-
+            $save->path = $path;
+            $save->name = $name;
             $save->save();
         }
 
