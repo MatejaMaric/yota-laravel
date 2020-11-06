@@ -12,4 +12,5 @@
             </div>
         </div>
     @endforeach
+    {{ $news->links() }}
 @endsection()
