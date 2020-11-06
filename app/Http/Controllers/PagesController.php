@@ -12,11 +12,6 @@ class PagesController extends Controller
         return view('pages.index');
     }
 
-    public function gallery(Request $request)
-    {
-        return view('pages.gallery');
-    }
-
     public function sponsoring(Request $request)
     {
         return view('pages.sponsoring');

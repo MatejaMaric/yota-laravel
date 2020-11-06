@@ -4,11 +4,12 @@
 
 @section('content')
     @foreach($news as $post)
-        <div class="well border border-secondary rounded p-2 mb-3">
-            <h2>{{ $post->title }}</h2>
-            <small>Published at {{ $post->created_at->format('Y-m-d') }}@isset ($post->author) by {{$post->author }}@endisset</small>
-            <hr class="bg-secondary">
-            <div>{!! $post->text !!}</div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h2 class="card-title">{{ $post->title }}</h2>
+                <h6 class="card-subtitle mb-2 text-muted">Published at {{ $post->created_at->format('Y-m-d') }}@isset ($post->author) by {{$post->author }}@endisset</h4>
+                <div class="card-text">{!! $post->text !!}</div>
+            </div>
         </div>
     @endforeach
 @endsection()

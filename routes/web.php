@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NewsController;
-use App\Http\Controllers\PagesController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\SpecialCallsController;
 
@@ -30,7 +31,7 @@ Route::post('/news/edit/{id}', [NewsController::class, 'update'])->name('newsEdi
 Route::get('/news/delete/{id}', [NewsController::class, 'destroy'])->name('newsDelete')->middleware(['auth']);
 
 
-Route::get('/gallery', [PagesController::class, 'gallery'])->name('gallery');
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
 
 
 Route::get('/special-calls', [ReservationsController::class, 'index'])->name('activities');
