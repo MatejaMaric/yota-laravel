@@ -8,6 +8,7 @@ use dd;
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Image;
 
@@ -102,7 +103,10 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        Image::findOrFail($id)->delete();
+        $img = Image::findOrFail($id);
+        $path = $img->path . $img->name;
+        Storage::delete($path);
+        $img->delete();
         return Redirect::back()->with('status', 'Image deleted.');
     }
 }

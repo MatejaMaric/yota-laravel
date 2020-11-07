@@ -34,9 +34,8 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
-        $data = Post::orderBy('created_at', 'desc')->get();
-        return view('pages.news-admin', compact('data'));
+        //$data = Post::orderBy('created_at', 'desc')->get();
+        return view('pages.news-admin');//, compact('data'));
     }
 
     /**
@@ -127,8 +126,8 @@ class NewsController extends Controller
             $post->text = $request->text;
             $post->saveOrFail();
 
-            return Redirect::route('newsAdd')->with('statusE', "Post edited.");
-        } else return Redirect::route('newsAdd');
+            return Redirect::route('news')->with('status', "Post edited.");
+        } else return Redirect::route('news');
     }
 
     /**
@@ -142,6 +141,6 @@ class NewsController extends Controller
         $post = Post::findOrFail($id);
         $title = $post->title;
         $post->delete();
-        return Redirect::back()->with('statusE', "Post \"$title\" deleted.");
+        return Redirect::back()->with('status', "Post \"$title\" deleted.");
     }
 }

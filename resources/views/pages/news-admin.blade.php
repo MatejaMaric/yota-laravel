@@ -5,28 +5,6 @@
 @section('navbar', View::make('inc.navbar'))
 
 @section('content')
-    <h3>News Administration:</h3>
-    @if (session('statusE'))
-      <div class="alert alert-success">
-        {{ session('statusE') }}
-      </div>
-    @endif
-    @if (count($data) > 0)
-        <div class="p-0 mt-3 col-lg-6 table-responsive">
-            <table class="table table-bordered">
-                @foreach ($data as $row)
-                    <tr>
-                        <td class="align-middle">{{ $row->title }}</td>
-                        <td><a href="{{ route('newsEdit', $row->id) }}" class="btn btn-warning">Edit</a></td>
-                        <td><a href="{{ route('newsDelete', $row->id) }}" class="btn btn-danger">Delete</a></td>
-                    </tr>
-                @endforeach
-            </table>
-        </div>
-    @else
-        <strong>There are currently no callsigns.</strong>
-    @endif
-
     <h3 class="mt-4">Add Post:</h3>
     @if (session('status'))
       <div class="alert alert-success">
