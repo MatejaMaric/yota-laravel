@@ -50,7 +50,7 @@ class GalleryController extends Controller
         foreach ($images as $image) {
             $path = 'imgs/';
             $name = time() . '.' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->move($path, $name);
+            $image->storeAs($path, $name, 'public');
 
             $save = new Image();
             $save->path = $path;
@@ -105,8 +105,8 @@ class GalleryController extends Controller
     {
         $img = Image::findOrFail($id);
         $path = $img->path . $img->name;
-        Storage::delete($path);
         $img->delete();
+        Storage::disk('public')->delete($path);
         return Redirect::back()->with('status', 'Image deleted.');
     }
 }

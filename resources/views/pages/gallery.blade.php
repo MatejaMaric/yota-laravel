@@ -18,7 +18,7 @@
                 <div class="col-lg-6">
                     <div class="card mb-3">
                         <div class="card-img-top">
-                            <img class="img-fluid" src="{{ asset($image->path . $image->name) }}" alt="{{ $image->name }}" loading="lazy">
+                            <img class="img-fluid" src="{{ asset('storage/' . $image->path . $image->name) }}" alt="{{ $image->name }}" loading="lazy">
                         </div>
                         @auth
                             <div class="card-body">
