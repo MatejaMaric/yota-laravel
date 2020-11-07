@@ -4,6 +4,13 @@
 
 @section('content')
     <div class="row">
+        @if (session('status'))
+            <div class="col-12 alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+    </div>
+    <div class="row">
         {{--<img class="col-lg-6 mb-3 mb-lg-0" src="/imgs/camp.png" alt="YOTA camp"/>--}}
         {{--<img class="col-lg-6 mb-3 mb-lg-0" src="/imgs/yota.jpg" alt="YOTA"/>--}}
         @if (count($images) > 0)
