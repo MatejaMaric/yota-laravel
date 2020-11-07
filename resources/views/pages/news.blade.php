@@ -16,10 +16,12 @@
                     <h6 class="card-subtitle mb-2 text-muted">Published at {{ $post->created_at->format('Y-m-d') }}@isset ($post->author) by {{$post->author }}@endisset</h4>
                     <div class="card-text">{!! $post->text !!}</div>
                 </div>
+                @auth
                 <div class="mt-3 card-footer">
                     <a href="{{ route('newsEdit', $post->id) }}" class="btn btn-warning">Edit</a>
                     <a href="{{ route('newsDelete', $post->id) }}" class="float-right btn btn-danger">Delete</a>
                 </div>
+                @endauth
             </div>
         @endforeach
         {{ $news->links() }}
