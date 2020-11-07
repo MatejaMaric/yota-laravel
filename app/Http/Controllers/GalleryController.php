@@ -20,7 +20,8 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        return view('pages.gallery');
+        $images = Image::paginate(9);
+        return view('pages.gallery', compact('images'));
     }
 
     /**
@@ -47,7 +48,7 @@ class GalleryController extends Controller
         $images = $request->file('images');
         foreach ($images as $image) {
             $path = 'imgs/';
-            $name = time() . '.' . $image->getClientOriginalExtension();
+            $name = time() . '.' . uniqid() . '.' . $image->getClientOriginalExtension();
             $image->move($path, $name);
 
             $save = new Image();
@@ -101,6 +102,7 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        return Redirect::back();
+        Image::findOrFail($id)->delete();
+        return Redirect::back()->with('status', 'Image deleted.');
     }
 }
