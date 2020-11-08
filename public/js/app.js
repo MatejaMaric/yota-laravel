@@ -19377,14 +19377,35 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/reserve.js":
+/*!*********************************!*\
+  !*** ./resources/js/reserve.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+jQuery('select#special-call').change(setCallDesc);
+jQuery(document).ready(setCallDesc);
+
+function setCallDesc() {
+  sign = jQuery('select#special-call').first().val();
+  jQuery.get('/special-calls/show/' + sign, function (data, status) {
+    jQuery('div#call-desc').html(data);
+  });
+}
+
+/***/ }),
+
 /***/ 0:
-/*!***********************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/css/app.css ***!
-  \***********************************************************/
+/*!*****************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/js/reserve.js ./resources/css/app.css ***!
+  \*****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /srv/http/laravel.komp.com/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /srv/http/laravel.komp.com/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
+__webpack_require__(/*! /srv/http/laravel.komp.com/resources/js/reserve.js */"./resources/js/reserve.js");
 module.exports = __webpack_require__(/*! /srv/http/laravel.komp.com/resources/css/app.css */"./resources/css/app.css");
 
 
