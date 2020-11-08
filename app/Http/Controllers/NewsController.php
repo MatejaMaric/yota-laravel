@@ -7,6 +7,8 @@ use function dd;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 
 use App\Models\Post;
 
@@ -21,6 +23,7 @@ class NewsController extends Controller
     {
         $news = Post::orderBy('created_at', 'desc')->paginate(6);
 
+        Session::flash('prev-url', URL::full());
         //$data = ['news' => $news];
         //return view('pages.news')->with($data);
         //return view('pages.news')->with('news', $news);
@@ -91,6 +94,7 @@ class NewsController extends Controller
     public function edit($id)
     {
         $data = Post::findOrFail($id);
+        Session::keep('prev-url');
         return view('pages.editpost', compact('data'));
     }
 
@@ -126,8 +130,8 @@ class NewsController extends Controller
             $post->text = $request->text;
             $post->saveOrFail();
 
-            return Redirect::route('news')->with('status', "Post edited.");
-        } else return Redirect::route('news');
+            return Redirect::to(Session::get('prev-url', route('news')))->with('status', "Post edited.");
+        } else return Redirect::to(Session::get('prev-url', route('news')));
     }
 
     /**
