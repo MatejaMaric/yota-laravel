@@ -31,6 +31,12 @@
   @enderror
 </div>
 
+<div class="card mb-3">
+  <div class="card-body pb-2">
+    <div class="card-text" id="call-desc"></div>
+  </div>
+</div>
+
   <!-- START TIME -->
 <div class="form-group">
   <label for="start-date">Start date:</label>
@@ -229,3 +235,7 @@
 </div>
 </form>
 @endsection()
+
+@section('scripts')
+  <script src="{{ asset('js/reserve.js') }}"></script>
+@endsection

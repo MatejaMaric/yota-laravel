@@ -46,6 +46,7 @@ Route::post('/special-calls/reservations', [ReservationsController::class, 'upda
 
 Route::get('/special-calls/add', [SpecialCallsController::class, 'create'])->name('addSign')->middleware(['auth']);
 Route::post('/special-calls/add', [SpecialCallsController::class, 'store'])->name('addSignForm')->middleware(['auth']);
+Route::get('/special-calls/show/{name}', [SpecialCallsController::class, 'show']);
 Route::get('/special-calls/edit/{id}', [SpecialCallsController::class, 'edit'])->name('editSign')->middleware(['auth']);
 Route::post('/special-calls/edit/{id}', [SpecialCallsController::class, 'update'])->name('editSignForm')->middleware(['auth']);
 Route::get('/special-calls/delete/{id}', [SpecialCallsController::class, 'destroy'])->name('deleteSign')->middleware(['auth']);

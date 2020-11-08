@@ -39,6 +39,13 @@ class SpecialCallsController extends Controller
         return Redirect::back()->with('status', "Special callsign added.");
     }
 
+    public function show($sign)
+    {
+        $call = SpecialCall::where('sign', $sign)->first();
+        return $call->description ?? '<p><i>This special callsign doesn\'t have a description.</i></p>';
+    }
+    
+
     public function edit(Request $request, int $id)
     {
         $data = SpecialCall::findOrFail($id);
