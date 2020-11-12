@@ -28,9 +28,12 @@
                     </div>
                 </div>
             @endforeach
+    </div>
+            <div class="row">
             {{ $images->links() }}
+            </div>
         @else
             <strong class="text-center">There are currently no images in gallery.</strong>
-        @endif
     </div>
+        @endif
 @endsection()
