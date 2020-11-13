@@ -19403,10 +19403,10 @@ function setCallDesc() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /srv/http/laravel.komp.com/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /srv/http/laravel.komp.com/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
-__webpack_require__(/*! /srv/http/laravel.komp.com/resources/js/reserve.js */"./resources/js/reserve.js");
-module.exports = __webpack_require__(/*! /srv/http/laravel.komp.com/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /var/www/laptop.com/mylaravelapp/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /var/www/laptop.com/mylaravelapp/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
+__webpack_require__(/*! /var/www/laptop.com/mylaravelapp/resources/js/reserve.js */"./resources/js/reserve.js");
+module.exports = __webpack_require__(/*! /var/www/laptop.com/mylaravelapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
