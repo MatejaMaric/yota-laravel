@@ -11,20 +11,39 @@ use Illuminate\Support\Facades\Redirect;
 
 use App\Models\Reservation;
 use App\Models\SpecialCall;
+use function response;
 
 class ReservationsController extends Controller
 {
     public function index(Request $request)
     {
-        $activities = Reservation::where('approved', '1')->get();
         //$activities = Reservation::addSelect([
             //'specialCall' => SpecialCall::select('sign')
                 ////->whereColumn('reservations.specialCall', 'special_calls.id')
                 //->whereColumn('specialCall', 'id')
                 //->limit(1)
         //])->get();
+        if ($request->isMethod('post')) {
 
-        return view('pages.activities', compact('activities'));
+            $request->validate([
+                'call-sign' => 'required|alphanum'
+            ]);
+
+            if ($request->input('call-sign') == 'all') {
+                $activities = Reservation::where('approved', '1')->get();
+
+                return response()->json($activities);
+            } else {
+                $activities = Reservation::whereColumn('approved', '1')
+                    ->whereColumn('specialCall', $request->input('call-sign'))
+                    ->get();
+
+                return response()->json($activities);
+            }
+        } else if ($request->isMethod('get')) {
+            $signs = SpecialCall::all(); 
+            return view('pages.activities', compact('signs'));
+        }
     }
 
     public function create(Request $request)

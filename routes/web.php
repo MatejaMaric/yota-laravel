@@ -30,6 +30,7 @@ Route::get('/news/edit/{id}', [NewsController::class, 'edit'])->name('newsEdit')
 Route::post('/news/edit/{id}', [NewsController::class, 'update'])->name('newsEditForm')->middleware(['auth']);
 Route::get('/news/delete/{id}', [NewsController::class, 'destroy'])->name('newsDelete')->middleware(['auth']);
 
+Route::post('/api/activities', [ReservationsController::class, 'index']);
 
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
 Route::get('/gallery/add', [GalleryController::class, 'create'])->name('galleryAdd')->middleware(['auth']);
