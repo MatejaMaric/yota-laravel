@@ -16,8 +16,13 @@
     @endif
 </select>
 
-<div class="table-responsive">
+<div class="table-responsive mt-2">
     <table id="ajax-table" class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr><th>Operator</th><th>From</th><th>To</th><th>Special Callsign</th><th>Frequencies</th><th>QSO</th></tr>
+        </thead>
+        <tbody>
+        </tbody>
     </table>
 </div>
 

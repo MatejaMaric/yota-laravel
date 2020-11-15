@@ -41,7 +41,7 @@ class ReservationsController extends Controller
                 return response($data);
             } else {
                 $activities = Reservation::where('approved', '1')
-                    ->select('operatorCall', 'fromTime', 'toTime', 'frequencies', 'qso')
+                    ->select('operatorCall', 'fromTime', 'toTime', 'specialCall', 'frequencies', 'qso')
                     ->where('specialCall', $request->input('call-sign'))
                     ->get()
                     ->toArray();
