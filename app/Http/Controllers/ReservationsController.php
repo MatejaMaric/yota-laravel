@@ -30,15 +30,27 @@ class ReservationsController extends Controller
             ]);
 
             if ($request->input('call-sign') == 'all') {
-                $activities = Reservation::where('approved', '1')->get();
+                $activities = Reservation::where('approved', '1')
+                    ->select('operatorCall', 'fromTime', 'toTime', 'specialCall', 'frequencies', 'qso')
+                    ->get()->toArray();
+                $data = [
+                    'status' => 'OK',
+                    'data' => $activities
+                ];
 
-                return response()->json($activities);
+                return response($data);
             } else {
-                $activities = Reservation::whereColumn('approved', '1')
-                    ->whereColumn('specialCall', $request->input('call-sign'))
-                    ->get();
+                $activities = Reservation::where('approved', '1')
+                    ->select('operatorCall', 'fromTime', 'toTime', 'frequencies', 'qso')
+                    ->where('specialCall', $request->input('call-sign'))
+                    ->get()
+                    ->toArray();
+                $data = [
+                    'status' => 'OK',
+                    'data' => $activities
+                ];
 
-                return response()->json($activities);
+                return response($data);
             }
         } else if ($request->isMethod('get')) {
             $signs = SpecialCall::all(); 
