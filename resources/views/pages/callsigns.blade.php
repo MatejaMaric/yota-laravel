@@ -2,7 +2,7 @@
 
 @section('title', 'Callsigns administration')
 
-@section('navbar', View::make('inc.special_navbar'))
+@section('navbar', View::make('inc.navbar'))
 
 @section('content')
     <h3>Callsigns Administration:</h3>

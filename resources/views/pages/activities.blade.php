@@ -2,7 +2,7 @@
 
 @section('title', 'Special Calls - Activities')
 
-@section('navbar', View::make('inc.special_navbar'))
+@section('navbar', View::make('inc.navbar'))
 
 @section('content')
 <input type="hidden" name="csrf-token" content="{{ csrf_token() }}">

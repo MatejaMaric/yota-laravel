@@ -2,7 +2,7 @@
 
 @section('title', 'Make reservation')
 
-@section('navbar', View::make('inc.special_navbar'))
+@section('navbar', View::make('inc.navbar'))
 
 @section('content')
   @if (session('status'))

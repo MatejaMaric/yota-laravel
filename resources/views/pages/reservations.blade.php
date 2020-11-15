@@ -2,7 +2,7 @@
 
 @section('title', 'Reservations')
 
-@section('navbar', View::make('inc.special_navbar'))
+@section('navbar', View::make('inc.navbar'))
 
 @section('content')
 @if (count($data) > 0)

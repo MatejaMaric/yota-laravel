@@ -2,7 +2,7 @@
 
 @section('title', 'Edit callsign')
 
-@section('navbar', View::make('inc.special_navbar'))
+@section('navbar', View::make('inc.navbar'))
 
 @section('content')
     <h3 class="mt-2">Edit Callsign:</h3>

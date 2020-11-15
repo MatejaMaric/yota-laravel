@@ -11,7 +11,15 @@
             <a href="{{ route('news') }}" class="nav-item nav-link {{ request()->routeIs('news') ? 'active' : '' }}">News</a>
             <a href="{{ route('gallery') }}" class="nav-item nav-link {{ request()->routeIs('gallery') ? 'active' : '' }}">Gallery</a>
             <a href="{{ route('sponsoring') }}" class="nav-item nav-link {{ request()->routeIs('sponsoring') ? 'active' : '' }}">Sponsoring</a>
-            <a href="{{ route('activities') }}" class="nav-item nav-link {{ request()->routeIs('activities') ? 'active' : '' }}">Special Calls</a>
+          <div class="nav-item dropdown">
+            <span class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Special Calls
+            </span>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a href="{{ route('activities') }}" class="dropdown-item {{ request()->routeIs('activities') ? 'active' : '' }}">Activities</a>
+                <a href="{{ route('reserve') }}" class="dropdown-item {{ request()->routeIs('reserve') ? 'active' : '' }}">Make reservation</a>
+            </div>
+          </div>
         </div>
         <div class="navbar-nav ml-auto">
         @if (Auth::check())
@@ -20,8 +28,10 @@
               Administration
             </span>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{{ route('newsAdd') }}">News</a>
-              <a class="dropdown-item" href="{{ route('galleryAdd') }}">Gallery</a>
+              <a class="dropdown-item {{ request()->routeIs('newsAdd') ? 'active' : '' }}" href="{{ route('newsAdd') }}">News</a>
+              <a class="dropdown-item {{ request()->routeIs('galleryAdd') ? 'active' : '' }}" href="{{ route('galleryAdd') }}">Gallery</a>
+              <a class="dropdown-item {{ request()->routeIs('addSign') ? 'active' : '' }}" href="{{ route('addSign') }}">Callsigns</a>
+              <a class="dropdown-item {{ request()->routeIs('reservations') ? 'active' : '' }}" href="{{ route('reservations') }}">Reservations</a>
             </div>
           </div>
           <a href="{{ route('logout') }}" class="nav-item nav-link">Logout</a>
