@@ -17,7 +17,7 @@ function fillTable() {
         if (status === 'success') {
             if (data.data.length > 0) {
                 tableData.empty();
-                for (var i = 0, len = data.data.length; i < len; i++) {
+                for (i = 0, len = data.data.length; i < len; i++) {
                     tr = '<tr><td>' + data.data[i].operatorCall + '</td>' +
                         '<td>' + data.data[i].fromTime + '</td>' +
                         '<td>' + data.data[i].toTime + '</td>' +

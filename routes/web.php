@@ -43,6 +43,8 @@ Route::post('/special-calls/reserve', [ReservationsController::class, 'store'])-
 Route::get('/special-calls/reservations', [ReservationsController::class, 'edit'])->name('reservations')->middleware(['auth']);
 Route::post('/special-calls/reservations', [ReservationsController::class, 'edit'])->name('reservationsForm')->middleware(['auth']);
 
+Route::post('/api/reservations', [ReservationsController::class, 'update'])->middleware(['auth']);
+
 
 Route::get('/special-calls/add', [SpecialCallsController::class, 'create'])->name('addSign')->middleware(['auth']);
 Route::post('/special-calls/add', [SpecialCallsController::class, 'store'])->name('addSignForm')->middleware(['auth']);

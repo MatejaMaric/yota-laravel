@@ -17,7 +17,7 @@ function fillTable() {
         if (status === 'success') {
             if (data.data.length > 0) {
                 tableData.empty();
-                for (var i = 0, len = data.data.length; i < len; i++) {
+                for (i = 0, len = data.data.length; i < len; i++) {
                     tr = '<tr>';
                     tr += '<td>' + data.data[i].id + '</td>';
                     if (data.data[i].approved === 1)
@@ -56,5 +56,67 @@ function fillTable() {
 }
 
 function btnAction(action, btn) {
-    console.log(action);
+    trDom = btn.parentElement.parentElement;
+    trData = trDom.children;
+
+    actionData = {
+        action: action,
+        id: trData[0].innerText,
+        approved: trData[1].firstElementChild.checked,
+        operatorCall: trData[2].innerText,
+        qso: trData[3].innerText,
+        fromTime: trData[4].innerText,
+        toTime: trData[5].innerText,
+        specialCall: trData[6].innerText,
+        frequencies: trData[7].innerText,
+        modes: trData[8].innerText,
+        operatorName: trData[9].innerText,
+        operatorEmail: trData[10].innerText,
+        operatorPhone: trData[11].innerText
+    };
+
+    if (actionData.action == 'delete') {
+        if (confirm("Are you sure you want to delete reservation #" + actionData.id + " made by " + actionData.operatorCall + "?") === true)
+            trDom.remove();
+        else return;
+    }
+
+    jQuery.post('/api/reservations', actionData, function (response, status) {
+        if (status === 'success') {
+            try {
+                // Handle various actions
+                if (response.action == "update") {
+                    //document.getElementById("notice").innerText = "Record #" + actionData.id + " updated.";
+                    console.log('Record #' + actionData.id + ' updated.');
+                } else if (response.action == "restore") {
+                    trData[1].firstElementChild.checked = response.approved == 1;
+                    trData[2].innerText = response.operatorCall;
+                    trData[3].innerText = response.qso;
+                    trData[4].innerText = response.fromTime;
+                    trData[5].innerText = response.toTime;
+                    trData[6].innerText = response.specialCall;
+                    trData[7].innerText = response.frequencies;
+                    trData[8].innerText = response.modes;
+                    trData[9].innerText = response.operatorName;
+                    trData[10].innerText = response.operatorEmail;
+                    trData[11].innerText = response.operatorPhone;
+                    //document.getElementById("notice").innerText = "Record's #" + actionData.id + " data restored.";
+                    //console.log('Record #' + actionData.id + ' data restored.');
+                } else if (response.action == "delete") {
+                    //document.getElementById("notice").innerText = "Record #" + actionData.id + " deleted.";
+                    //console.log('Record #' + actionData.id + ' deleted.');
+                } else {
+                    //console.log("No action?");
+                    //console.log(data);
+                }
+            } catch {
+                //console.log(data);
+                alert("Bad input data!");
+            }
+        }
+        else {
+            //console.log('AJAX error');
+            alert("Bad input data!");
+        }
+    });
 }

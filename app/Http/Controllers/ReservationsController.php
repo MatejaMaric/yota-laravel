@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use function GuzzleHttp\json_encode;
 use function dd;
 use function redirect;
 
@@ -167,6 +168,54 @@ class ReservationsController extends Controller
 
     public function update(Request $request)
     {
-        return Redirect::back();
+        $rules = [
+            'action' => 'required',
+            'id' => 'required|numeric',
+            'qso' => 'required|numeric',
+            'approved' => 'required',
+            'specialCall' => 'required|alphanum',
+            'fromTime' => 'required|date',
+            'toTime' => 'required|date|after:fromTime',
+            'frequencies' => 'required',
+            'modes' => 'required',
+            'operatorCall' => 'required|alphanum',
+            'operatorName' => 'required',
+            'operatorEmail' => 'required|email',
+            'operatorPhone' => ['required', 'regex:/^[0-9 ]+$/'],
+        ];
+        $validatedData = $request->validate($rules);
+
+        $record = Reservation::findOrFail($request->id);
+
+        if ($request->action == "update") {
+            $record->approved = filter_var($request->approved, FILTER_VALIDATE_BOOLEAN);
+            $record->qso = $request->qso;
+            $record->specialCall = $request->specialCall;
+            $record->fromTime = $request->fromTime;
+            $record->toTime = $request->toTime;
+            $record->frequencies = $request->frequencies;
+            $record->modes = $request->modes;
+            $record->operatorCall = $request->operatorCall;
+            $record->operatorName = $request->operatorName;
+            $record->operatorEmail = $request->operatorEmail;
+            $record->operatorPhone = $request->operatorPhone;
+            $record->saveOrFail();
+            
+            return response()->json(['action' => $request->input('action')]);
+
+        } else if ($request->action == "restore") {
+            $resp = $record->toArray();
+            $resp['action'] = $request->input('action');
+
+            return response()->json($resp);
+
+        } else if ($request->action == "delete") {
+            $record->delete();
+            
+            return response()->json(['action' => $request->input('action')]);
+
+        } else {
+            return response()->json(['action' => 'error']);
+        }
     }
 }
