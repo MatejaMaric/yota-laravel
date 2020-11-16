@@ -86,8 +86,7 @@ function btnAction(action, btn) {
             try {
                 // Handle various actions
                 if (response.action == "update") {
-                    //document.getElementById("notice").innerText = "Record #" + actionData.id + " updated.";
-                    console.log('Record #' + actionData.id + ' updated.');
+                    jQuery('#notice').html("Record #" + actionData.id + " updated.");
                 } else if (response.action == "restore") {
                     trData[1].firstElementChild.checked = response.approved == 1;
                     trData[2].innerText = response.operatorCall;
@@ -100,13 +99,11 @@ function btnAction(action, btn) {
                     trData[9].innerText = response.operatorName;
                     trData[10].innerText = response.operatorEmail;
                     trData[11].innerText = response.operatorPhone;
-                    //document.getElementById("notice").innerText = "Record's #" + actionData.id + " data restored.";
-                    //console.log('Record #' + actionData.id + ' data restored.');
+                    jQuery('#notice').html("Record's #" + actionData.id + " data restored.");
                 } else if (response.action == "delete") {
-                    //document.getElementById("notice").innerText = "Record #" + actionData.id + " deleted.";
-                    //console.log('Record #' + actionData.id + ' deleted.');
+                    jQuery('#notice').html("Record #" + actionData.id + " deleted.");
                 } else {
-                    //console.log("No action?");
+                    console.log("No action?");
                     //console.log(data);
                 }
             } catch {
@@ -115,7 +112,7 @@ function btnAction(action, btn) {
             }
         }
         else {
-            //console.log('AJAX error');
+            console.log('AJAX error');
             alert("Bad input data!");
         }
     });

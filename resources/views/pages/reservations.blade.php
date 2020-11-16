@@ -19,6 +19,7 @@
         @endforeach
     @endif
 </select>
+<div id="notice" class="float-right font-weight-bold"></div>        
 
 <div class="table-responsive mt-2">
     <table id="ajax-table" class="table table-striped table-bordered" style="white-space:nowrap;"><!-- table-hover -->
