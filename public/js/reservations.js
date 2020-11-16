@@ -9,30 +9,52 @@ jQuery(document).ready(fillTable);
 
 function fillTable() {
     tableData = jQuery('table#ajax-table>tbody').first();
-    tableData.html('<tr><td class="font-weight-bold text-center" colspan="6">Loading...</td></tr>');
+    tableData.html('<tr><td class="font-weight-bold text-center" colspan="13">Loading...</td></tr>');
 
     sign = jQuery('select#call-sign').first().val();
 
-    jQuery.post('/api/activities', {'call-sign': sign}, function (data, status) {
+    jQuery.post('/special-calls/reservations', {'call-sign': sign}, function (data, status) {
         if (status === 'success') {
             if (data.data.length > 0) {
                 tableData.empty();
                 for (var i = 0, len = data.data.length; i < len; i++) {
-                    tr = '<tr><td>' + data.data[i].operatorCall + '</td>' +
-                        '<td>' + data.data[i].fromTime + '</td>' +
-                        '<td>' + data.data[i].toTime + '</td>' +
-                        '<td>' + data.data[i].specialCall + '</td>' +
-                        '<td>' + data.data[i].frequencies + '</td>' +
-                        '<td>' + data.data[i].qso + '</td></tr>';
+                    tr = '<tr>';
+                    tr += '<td>' + data.data[i].id + '</td>';
+                    if (data.data[i].approved === 1)
+                        tr += '<td class="text-center"><input type="checkbox" checked></td>';
+                    else
+                        tr += '<td class="text-center"><input type="checkbox"></td>';
+
+                    tr +=
+                        '<td contenteditable="true">' + data.data[i].operatorCall + '</td>' +
+                        '<td contenteditable="true">' + data.data[i].qso + '</td>' +
+                        '<td contenteditable="true">' + data.data[i].fromTime + '</td>' +
+                        '<td contenteditable="true">' + data.data[i].toTime + '</td>' +
+                        '<td contenteditable="true">' + data.data[i].specialCall + '</td>' +
+                        '<td contenteditable="true">' + data.data[i].frequencies + '</td>' +
+                        '<td contenteditable="true">' + data.data[i].modes + '</td>' +
+                        '<td contenteditable="true">' + data.data[i].operatorName + '</td>' +
+                        '<td contenteditable="true">' + data.data[i].operatorEmail + '</td>' +
+                        '<td contenteditable="true">' + data.data[i].operatorPhone + '</td>';
+                    tr += '<td>';
+                    tr += "<button class=\"btn btn-primary mr-2\" onclick=\"btnAction('update', this)\">Update</button>";
+                    tr += "<button class=\"btn btn-warning mr-2\" onclick=\"btnAction('restore', this)\">Restore</button>";
+                    tr += "<button class=\"btn btn-danger\" onclick=\"btnAction('delete', this)\">Delete</button>";
+                    tr += '</td>';
+                    tr += '</tr>';
                     tableData.append(tr);
                 }
             }
             else {
-                tableData.html('<tr><td class="font-weight-bold text-center" colspan="6">No data...</td></tr>');
+                tableData.html('<tr><td class="font-weight-bold text-center" colspan="13">No data...</td></tr>');
             }
         }
         else {
-            tableData.html('<tr><td class="font-weight-bold text-center" colspan="6">Error!</td></tr>');
+            tableData.html('<tr><td class="font-weight-bold text-center" colspan="13">Error!</td></tr>');
         }
     });
+}
+
+function btnAction(action, btn) {
+    console.log(action);
 }

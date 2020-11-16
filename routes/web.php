@@ -41,7 +41,7 @@ Route::get('/special-calls', [ReservationsController::class, 'index'])->name('ac
 Route::get('/special-calls/reserve', [ReservationsController::class, 'create'])->name('reserve');
 Route::post('/special-calls/reserve', [ReservationsController::class, 'store'])->name('reserveForm');
 Route::get('/special-calls/reservations', [ReservationsController::class, 'edit'])->name('reservations')->middleware(['auth']);
-Route::post('/special-calls/reservations', [ReservationsController::class, 'update'])->name('reservationsForm')->middleware(['auth']);
+Route::post('/special-calls/reservations', [ReservationsController::class, 'edit'])->name('reservationsForm')->middleware(['auth']);
 
 
 Route::get('/special-calls/add', [SpecialCallsController::class, 'create'])->name('addSign')->middleware(['auth']);

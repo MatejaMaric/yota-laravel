@@ -128,8 +128,41 @@ class ReservationsController extends Controller
     // Administration
     public function edit(Request $request)
     {
-        $data = Reservation::orderBy('id', 'desc')->get();
-        return view('pages.reservations', compact('data'));
+        if ($request->isMethod('post')) {
+
+            $request->validate([
+                'call-sign' => 'required|alphanum'
+            ]);
+
+            if ($request->input('call-sign') == 'all') {
+                $activities = Reservation::orderBy('id', 'desc')
+                    ->get()
+                    ->toArray();
+                $data = [
+                    'status' => 'OK',
+                    'data' => $activities
+                ];
+
+                return response($data);
+            } else {
+                $activities = Reservation::where('specialCall', $request->input('call-sign'))
+                    ->orderBy('id', 'desc')
+                    ->get()
+                    ->toArray();
+                $data = [
+                    'status' => 'OK',
+                    'data' => $activities
+                ];
+
+                return response($data);
+            }
+            
+        }
+        else {
+            //$data = Reservation::orderBy('id', 'desc')->get();
+            $signs = SpecialCall::all(); 
+            return view('pages.reservations', compact('signs'));
+        }
     }
 
     public function update(Request $request)

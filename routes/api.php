@@ -21,3 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('activities', [ReservationsController::class, 'index']);
+Route::post('reservations', [ReservationsController::class, 'update'])->middleware(['auth']);
