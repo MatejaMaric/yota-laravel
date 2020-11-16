@@ -92,6 +92,14 @@ class ReservationsController extends Controller
 
         $validator = Validator::make($request->all(), $rules, $messages);
 
+        $validator->after(function ($validator) use ($request) {
+            $fromStamp = strtotime($request->sdate . ' ' . $request->stime);
+            $toStamp = strtotime($request->edate . ' ' . $request->etime);
+            if (!($fromStamp < $toStamp)) {
+                $validator->errors()->add('time', 'FROM time and date needs to be before TO time and date.');
+            }
+        });
+
         if ($validator->fails()) {
             return Redirect::back()
                 ->withErrors($validator)

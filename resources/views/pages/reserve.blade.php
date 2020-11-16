@@ -37,6 +37,9 @@
   </div>
 </div>
 
+@error('time')
+  <div class="alert alert-danger mt-2">{{ $message }}</div>
+@enderror
   <!-- START TIME -->
 <div class="form-group">
   <label for="start-date">Start date:</label>
