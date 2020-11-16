@@ -32,6 +32,7 @@ class ReservationsController extends Controller
             if ($request->input('call-sign') == 'all') {
                 $activities = Reservation::where('approved', '1')
                     ->select('operatorCall', 'fromTime', 'toTime', 'specialCall', 'frequencies', 'qso')
+                    ->orderBy('fromTime', 'asc')
                     ->get()->toArray();
                 $data = [
                     'status' => 'OK',
@@ -43,6 +44,7 @@ class ReservationsController extends Controller
                 $activities = Reservation::where('approved', '1')
                     ->select('operatorCall', 'fromTime', 'toTime', 'specialCall', 'frequencies', 'qso')
                     ->where('specialCall', $request->input('call-sign'))
+                    ->orderBy('fromTime', 'asc')
                     ->get()
                     ->toArray();
                 $data = [
@@ -126,7 +128,7 @@ class ReservationsController extends Controller
     // Administration
     public function edit(Request $request)
     {
-        $data = Reservation::all();
+        $data = Reservation::orderBy('id', 'desc')->get();
         return view('pages.reservations', compact('data'));
     }
 
