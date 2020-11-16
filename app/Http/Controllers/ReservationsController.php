@@ -99,7 +99,7 @@ class ReservationsController extends Controller
             $fromStamp = strtotime($request->sdate . ' ' . $request->stime);
             $toStamp = strtotime($request->edate . ' ' . $request->etime);
             if (!($fromStamp < $toStamp)) {
-                $validator->errors()->add('time', 'FROM time and date needs to be before TO time and date.');
+                $validator->errors()->add('time', 'Start date and time needs to be before end date and time.');
             }
         });
 
