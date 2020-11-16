@@ -44,7 +44,8 @@ class GalleryController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'images' => 'required'
+            'images' => 'required',
+            'images.*' => 'image'
         ]);
         $images = $request->file('images');
         foreach ($images as $image) {
