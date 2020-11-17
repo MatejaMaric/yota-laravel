@@ -23,7 +23,7 @@
   <select class="form-control @error('scall') is-invalid @enderror" id="special-call" name="scall" required>
     {{--<option value="YT50SCWC">YT50SCWC</option>--}}
     @foreach ($signs as $sign)
-      <option value="{{ $sign->sign }}">{{ $sign->sign }}</option>
+      <option value="{{ $sign->sign }}" {{ old('scall') == $sign->sign ? 'selected' : '' }}>{{ $sign->sign }}</option>
     @endforeach
   </select> 
   @error('scall')
