@@ -12,7 +12,7 @@
   @endif
   @if ($errors->any())
     <div class="alert alert-danger">
-      All fields must be filled!
+      All fields must be filled and conditions satisfied!
     </div>
   @endif
 <form action="{{ route('reserve') }}" method="POST">
@@ -74,127 +74,36 @@
   @enderror
 </div>
 
-  <!-- BANDS -->
-  <fieldset class="form-group">
-    <legend>I will be active on bands:</legend>
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="cb1" name="freqs[]" value="1.8 MHz">
-    <label class="form-check-label" for="cb1">1.8 MHz</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="cb2" name="freqs[]" value="3.5 MHz">
-    <label class="form-check-label" for="cb2">3.5 MHz</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="cb3" name="freqs[]" value="7 MHz">
-    <label class="form-check-label" for="cb3">7 MHz</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="cb4" name="freqs[]" value="10 MHz">
-    <label class="form-check-label" for="cb4">10 MHz</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="cb5" name="freqs[]" value="14 MHz">
-    <label class="form-check-label" for="cb5">14 MHz</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="cb6" name="freqs[]" value="18 MHz">
-    <label class="form-check-label" for="cb6">18 MHz</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="cb7" name="freqs[]" value="21 MHz">
-    <label class="form-check-label" for="cb7">21 MHz</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="cb8" name="freqs[]" value="24 MHz">
-    <label class="form-check-label" for="cb8">24 MHz</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="cb9" name="freqs[]" value="28 MHz">
-    <label class="form-check-label" for="cb9">28 MHz</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="cb10" name="freqs[]" value="50 MHz">
-    <label class="form-check-label" for="cb10">50 MHz</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="cb11" name="freqs[]" value="144 MHz">
-    <label class="form-check-label" for="cb11">144 MHz</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="cb12" name="freqs[]" value="432 MHz">
-    <label class="form-check-label" for="cb12">432 MHz</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="cb13" name="freqs[]" value="1.2 GHz">
-    <label class="form-check-label" for="cb13">1.2 GHz</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="cb14" name="freqs[]" value="2.3 GHz">
-    <label class="form-check-label" for="cb14">2.3 GHz</label>
-</div>
+<!-- BANDS -->
+<fieldset class="form-group">
+  <legend>I will be active on bands:</legend>
+@foreach ($freq_list as $freq)
+  <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="fcb{{ $loop->index }}" name="freqs[]" value="{{ $freq }}" @if(is_array(old('freqs')) && in_array($freq, old('freqs'))) checked @endif>
+      <label class="form-check-label" for="fcb{{ $loop->index }}">{{ $freq }}</label>
+  </div>
+@endforeach
 
 @error('freqs')
   <div class="alert alert-danger mt-2">{{ $message }}</div>
 @enderror
-  </fieldset>
+</fieldset>
 
-  <!-- MODES -->
-  <fieldset class="form-group">
-    <legend>I will use modes:</legend>
+<!-- MODES -->
+<fieldset class="form-group">
+  <legend>I will use modes:</legend>
 
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="CW" name="modes[]" value="CW">
-    <label class="form-check-label" for="CW">CW</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="SSB" name="modes[]" value="SSB">
-    <label class="form-check-label" for="SSB">SSB</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="FM" name="modes[]" value="FM">
-    <label class="form-check-label" for="FM">FM</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="RTTY" name="modes[]" value="RTTY">
-    <label class="form-check-label" for="RTTY">RTTY</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="MFSK" name="modes[]" value="MFSK">
-    <label class="form-check-label" for="MFSK">MFSK (JT65, FT8...)</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="IMAGING" name="modes[]" value="IMAGING">
-    <label class="form-check-label" for="IMAGING">IMAGING (ATV, SSTV...)</label>
-</div>
-
-<div class="form-check">
-    <input class="form-check-input" type="checkbox" id="OTHER DIGITAL" name="modes[]" value="OTHER DIGITAL">
-    <label class="form-check-label" for="OTHER DIGITAL">OTHER DIGITAL</label>
-</div>
+@foreach ($mode_list as $key => $value)
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="mcb{{ $loop->index }}" name="modes[]" value="{{ $key }}" @if(is_array(old('modes')) && in_array($key, old('modes'))) checked @endif>
+    <label class="form-check-label" for="mcb{{ $loop->index }}">{{ $value }}</label>
+  </div>
+@endforeach
 
 @error('modes')
   <div class="alert alert-danger mt-2">{{ $message }}</div>
 @enderror
-  </fieldset>
+</fieldset>
 
   <!-- OPERATOR CALL -->
 <div class="form-group">

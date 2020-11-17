@@ -64,7 +64,41 @@ class ReservationsController extends Controller
     public function create(Request $request)
     {
         $signs = SpecialCall::all();
-        return view('pages.reserve', compact('signs'));
+
+        $freq_list = [
+          '1.8 MHz',
+          '3.5 MHz',
+          '7 MHz',
+          '10 MHz',
+          '14 MHz',
+          '18 MHz',
+          '21 MHz',
+          '24 MHz',
+          '28 MHz',
+          '50 MHz',
+          '144 MHz',
+          '432 MHz',
+          '1.2 GHz',
+          '2.3 GHz'
+        ];
+
+        $mode_list = [
+          'CW' => 'CW',
+          'SSB' => 'SSB',
+          'FM' => 'FM',
+          'RTTY' => 'RTTY',
+          'MFSK' => 'MFSK (JT65, FT8...)',
+          'IMAGING' => 'IMAGING (ATV, SSTV...)',
+          'OTHER DIGITAL' => 'OTHER DIGITAL'
+        ];
+
+        $data = [
+            'signs' => $signs,
+            'freq_list' => $freq_list,
+            'mode_list' => $mode_list
+        ];
+
+        return view('pages.reserve', $data);
     }
 
     public function store(Request $request)
