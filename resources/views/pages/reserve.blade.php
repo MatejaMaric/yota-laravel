@@ -21,7 +21,6 @@
 <div class="form-group">
   <label for="special-call">Special Callsign:</label>
   <select class="form-control @error('scall') is-invalid @enderror" id="special-call" name="scall" required>
-    {{--<option value="YT50SCWC">YT50SCWC</option>--}}
     @foreach ($signs as $sign)
       <option value="{{ $sign->sign }}" {{ old('scall') == $sign->sign ? 'selected' : '' }}>{{ $sign->sign }}</option>
     @endforeach
@@ -32,7 +31,7 @@
 </div>
 
 <div class="card mb-3">
-  <div class="card-body pb-2">
+  <div class="card-body pb-1">
     <div class="card-text" id="call-desc"></div>
   </div>
 </div>
