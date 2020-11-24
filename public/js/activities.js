@@ -18,7 +18,7 @@ function fillTable() {
     descDiv.empty();
   } else {
     jQuery.get('/special-calls/show/' + sign, function (data, status) {
-      descDiv.html('<div class="card"><div class="card-body pb-1">' + data + '</div></div>');
+      descDiv.html('<div class="card mt-1"><div class="card-body pb-1">' + data + '</div></div>');
       console.log(data);
     });
   }
