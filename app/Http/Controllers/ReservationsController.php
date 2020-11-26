@@ -32,7 +32,7 @@ class ReservationsController extends Controller
 
             if ($request->input('call-sign') == 'all') {
                 $activities = Reservation::where('approved', '1')
-                    ->select('operatorCall', 'fromTime', 'toTime', 'specialCall', 'frequencies', 'qso')
+                    ->select('operatorCall', 'fromTime', 'toTime', 'specialCall', 'frequencies', 'modes', 'qso')
                     ->orderBy('fromTime', 'asc')
                     ->get()->toArray();
                 $data = [
@@ -43,7 +43,7 @@ class ReservationsController extends Controller
                 return response($data);
             } else {
                 $activities = Reservation::where('approved', '1')
-                    ->select('operatorCall', 'fromTime', 'toTime', 'specialCall', 'frequencies', 'qso')
+                    ->select('operatorCall', 'fromTime', 'toTime', 'specialCall', 'frequencies', 'modes', 'qso')
                     ->where('specialCall', $request->input('call-sign'))
                     ->orderBy('fromTime', 'asc')
                     ->get()

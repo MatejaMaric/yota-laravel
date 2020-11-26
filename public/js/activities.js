@@ -33,6 +33,7 @@ function fillTable() {
             '<td>' + data.data[i].toTime + '</td>' +
             '<td>' + data.data[i].specialCall + '</td>' +
             '<td>' + data.data[i].frequencies + '</td>' +
+            '<td>' + data.data[i].modes + '</td>' +
             '<td>' + data.data[i].qso + '</td></tr>';
           tableData.append(tr);
         }
