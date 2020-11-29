@@ -150,7 +150,7 @@ class ReservationsController extends Controller
         $reservation->toTime        = $request->edate . ' ' . $request->etime;
         $reservation->frequencies   = implode(', ', $request->freqs);
         $reservation->modes         = implode(', ', $request->modes);
-        $reservation->operatorCall  = $request->ocall;
+        $reservation->operatorCall  = strtoupper($request->ocall);
         $reservation->operatorName  = $request->oname;
         $reservation->operatorEmail = $request->email;
         $reservation->operatorPhone = $request->phone;
@@ -229,7 +229,7 @@ class ReservationsController extends Controller
             $record->toTime = $request->toTime;
             $record->frequencies = $request->frequencies;
             $record->modes = $request->modes;
-            $record->operatorCall = $request->operatorCall;
+            $record->operatorCall = strtoupper($request->operatorCall);
             $record->operatorName = $request->operatorName;
             $record->operatorEmail = $request->operatorEmail;
             $record->operatorPhone = $request->operatorPhone;
