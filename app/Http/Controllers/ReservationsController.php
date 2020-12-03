@@ -205,23 +205,27 @@ class ReservationsController extends Controller
         $rules = [
             'action' => 'required',
             'id' => 'required|numeric',
-            'qso' => 'required|numeric',
-            'approved' => 'required',
-            'specialCall' => 'required|alphanum',
-            'fromTime' => 'required|date',
-            'toTime' => 'required|date|after:fromTime',
-            'frequencies' => 'required',
-            'modes' => 'required',
-            'operatorCall' => 'required|alphanum',
-            'operatorName' => 'required',
-            'operatorEmail' => 'required|email',
-            'operatorPhone' => ['required', 'regex:/^[0-9 ]+$/'],
         ];
         $validatedData = $request->validate($rules);
 
         $record = Reservation::findOrFail($request->id);
 
         if ($request->action == "update") {
+            $rules = [
+                'qso' => 'required|numeric',
+                'approved' => 'required',
+                'specialCall' => 'required|alphanum',
+                'fromTime' => 'required|date',
+                'toTime' => 'required|date|after:fromTime',
+                'frequencies' => 'required',
+                'modes' => 'required',
+                'operatorCall' => 'required|alphanum',
+                'operatorName' => 'required',
+                'operatorEmail' => 'required|email',
+                'operatorPhone' => ['required', 'regex:/^[0-9 ]+$/'],
+            ];
+            $validatedData = $request->validate($rules);
+
             $record->approved = filter_var($request->approved, FILTER_VALIDATE_BOOLEAN);
             $record->qso = $request->qso;
             $record->specialCall = $request->specialCall;
