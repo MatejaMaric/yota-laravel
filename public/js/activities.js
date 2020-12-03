@@ -9,7 +9,7 @@ jQuery(document).ready(fillTable);
 
 function fillTable() {
   tableData = jQuery('table#ajax-table>tbody').first();
-  tableData.html('<tr><td class="font-weight-bold text-center" colspan="6">Loading...</td></tr>');
+  tableData.html('<tr><td class="font-weight-bold text-center" colspan="7">Loading...</td></tr>');
 
   sign = jQuery('select#call-sign').first().val();
 

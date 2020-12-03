@@ -42,7 +42,7 @@
   <!-- START TIME -->
 <div class="form-group">
   <label for="start-date">Start date:</label>
-  <input class="form-control @error('sdate') is-invalid @enderror" type="date" id="start-date" name="sdate" value="{{ old('sdate') }}" required>
+  <input class="jquery-date form-control @error('sdate') is-invalid @enderror" type="text" placeholder="DD.MM.YYYY." id="start-date" name="sdate" value="{{ old('sdate') }}" required>
   @error('sdate')
     <div class="alert alert-danger mt-2">{{ $message }}</div>
   @enderror
@@ -50,7 +50,7 @@
 
 <div class="form-group">
   <label for="start-time">Start time:</label>
-  <input class="form-control @error('stime') is-invalid @enderror" type="time" id="start-time" name="stime" value="{{ old('stime') }}" required>
+  <input class="jquery-time form-control @error('stime') is-invalid @enderror" type="text" placeholder="HH:MM" id="start-time" name="stime" value="{{ old('stime') }}" required>
   @error('stime')
     <div class="alert alert-danger mt-2">{{ $message }}</div>
   @enderror
@@ -59,7 +59,7 @@
   <!-- END TIME -->
 <div class="form-group">
   <label for="end-date">End date:</label>
-  <input class="form-control @error('edate') is-invalid @enderror" type="date" id="end-date" name="edate" value="{{ old('edate') }}" required>
+  <input class="jquery-date form-control @error('edate') is-invalid @enderror" type="text" placeholder="DD.MM.YYYY." id="end-date" name="edate" value="{{ old('edate') }}" required>
   @error('edate')
     <div class="alert alert-danger mt-2">{{ $message }}</div>
   @enderror
@@ -67,7 +67,7 @@
 
 <div class="form-group">
   <label for="end-time">End time:</label>
-  <input class="form-control @error('etime') is-invalid @enderror" type="time" id="end-time" name="etime" value="{{ old('etime') }}" required>
+  <input class="jquery-time form-control @error('etime') is-invalid @enderror" type="text" placeholder="HH:MM" id="end-time" name="etime" value="{{ old('etime') }}" required>
   @error('etime')
     <div class="alert alert-danger mt-2">{{ $message }}</div>
   @enderror
@@ -147,6 +147,21 @@
 </form>
 @endsection()
 
+@section('styles')
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha512-f0tzWhCwVFS3WeYaofoLWkTP62ObhewQ1EZn65oSYDZUg1+CyywGKkWzm8BxaJj5HGKI72PnMH9jYyIFz+GH7g==" crossorigin="anonymous" />
+@endsection
+
 @section('scripts')
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw==" crossorigin="anonymous"></script>
+  <script>
+    jQuery('.jquery-date').datetimepicker({
+      timepicker: false,
+      format: 'd.m.Y.'
+    });
+    jQuery('.jquery-time').datetimepicker({
+      datepicker: false,
+      format: 'H:i'
+    });
+  </script>
   <script src="{{ asset('js/reserve.js') }}"></script>
 @endsection
