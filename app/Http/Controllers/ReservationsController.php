@@ -170,7 +170,8 @@ class ReservationsController extends Controller
             ]);
 
             if ($request->input('call-sign') == 'all') {
-                $activities = Reservation::orderBy('id', 'desc')
+                $activities = Reservation::orderBy('fromTime', 'asc')
+                    ->orderBy('toTime', 'asc')
                     ->get()
                     ->toArray();
                 $data = [
@@ -181,7 +182,8 @@ class ReservationsController extends Controller
                 return response($data);
             } else {
                 $activities = Reservation::where('specialCall', $request->input('call-sign'))
-                    ->orderBy('id', 'desc')
+                    ->orderBy('fromTime', 'asc')
+                    ->orderBy('toTime', 'asc')
                     ->get()
                     ->toArray();
                 $data = [

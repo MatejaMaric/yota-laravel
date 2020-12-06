@@ -44,7 +44,7 @@ class LoginController extends Controller
         //return redirect('login')->with('status', 'Submitted.');
         //return Redirect::back()->with('status', 'Submitted.');
         if (Auth::attempt($request->only('email', 'password')))
-            return redirect()->intended(route('home'));
+            return redirect()->intended(route('reservations'));
         else return Redirect::back()
             ->withErrors(['failed' => ['Bad credentials!']]);
     }
