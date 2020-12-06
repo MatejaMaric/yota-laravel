@@ -34,6 +34,7 @@ class ReservationsController extends Controller
                 $activities = Reservation::where('approved', '1')
                     ->select('operatorCall', 'fromTime', 'toTime', 'specialCall', 'frequencies', 'modes', 'qso')
                     ->orderBy('fromTime', 'asc')
+                    ->orderBy('toTime', 'asc')
                     ->get()->toArray();
                 $data = [
                     'status' => 'OK',
@@ -46,6 +47,7 @@ class ReservationsController extends Controller
                     ->select('operatorCall', 'fromTime', 'toTime', 'specialCall', 'frequencies', 'modes', 'qso')
                     ->where('specialCall', $request->input('call-sign'))
                     ->orderBy('fromTime', 'asc')
+                    ->orderBy('toTime', 'asc')
                     ->get()
                     ->toArray();
                 $data = [
