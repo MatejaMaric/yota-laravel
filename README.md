@@ -1,4 +1,4 @@
-Website made for Serbian YOTA section. Primarily used for special callsign and frequency reservation handling, but also has gallery and news system.
+Website made for [Serbian YOTA section](https://yota.yu1srs.org.rs). Primarily used for special callsign and frequency reservation handling, but also has gallery and news system.
 
 
 Copyright (C) 2020  Mateja Maric
