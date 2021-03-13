@@ -6,6 +6,9 @@
 
 @section('content')
 <input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
+
+<call-sign-filter></call-sign-filter><br>
+
 <label for="call-sign">Filter by special callsign: </label>
 <select id="call-sign">
     <option value="all">All</option>

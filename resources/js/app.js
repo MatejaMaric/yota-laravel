@@ -1,16 +1,23 @@
 require('./bootstrap');
 
-//import store from './store.js';
-require('./store');
+import Vue from 'vue';
 
-import callSignDesc from './components/call-sign-description.vue';
+import store from './store.js';
+
+//window.Vue = require('vue');
+//window.Vuex = require('vuex');
+//Vue.use(Vuex);
+
 import callSignFilter from './components/call-sign-filter.vue';
+import callSignDesc from './components/call-sign-description.vue';
+
 import activities from './components/activities.vue';
 import reservation from './components/reservation.vue';
 import reservations from './components/reservations.vue';
 
 new Vue({
   el: '#vue',
+  store,
   components: {
     callSignDesc,
     callSignFilter,
