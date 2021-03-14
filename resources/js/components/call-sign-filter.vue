@@ -6,23 +6,21 @@
 </template>
 
 <script>
-import store from '../store.js';
-
 export default {
   mounted() {
-    store.dispatch('fillSigns');
+    this.$store.dispatch('fillSigns');
   },
   computed: {
     selected: {
       get() {
-        return store.getters.getSelectedSign;
+        return this.$store.getters.getSelectedSign;
       },
       set(value) {
-        store.dispatch('setSelectedSign', value);
+        this.$store.dispatch('setSelectedSign', value);
       }
     },
     options() {
-      return store.getters.getSigns;
+      return this.$store.getters.getSigns;
     }
   }
 }

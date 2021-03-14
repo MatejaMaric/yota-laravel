@@ -4,10 +4,6 @@ import Vue from 'vue';
 
 import store from './store.js';
 
-//window.Vue = require('vue');
-//window.Vuex = require('vuex');
-//Vue.use(Vuex);
-
 import callSignFilter from './components/call-sign-filter.vue';
 import callSignDesc from './components/call-sign-description.vue';
 
