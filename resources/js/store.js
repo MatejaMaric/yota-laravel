@@ -17,12 +17,18 @@ const store = new Vuex.Store({
     }
   },
   mutations: {
+    setSelectedSign(state, sign) {
+      state.selectedSign = sign;
+    },
     fillSigns(state, signs) {
       state.callSigns = signs;
     }
   },
   actions: {
-    getSigns(context) {
+    setSelectedSign(context, sign) {
+      context.commit('setSelectedSign', sign);
+    },
+    fillSigns(context) {
       let data = ['test', 'TEST', 'TeSt'];
       context.commit('fillSigns', data);
     }

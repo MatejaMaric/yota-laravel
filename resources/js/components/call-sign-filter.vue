@@ -9,18 +9,20 @@
 import store from '../store.js';
 
 export default {
-  data() {
-    return {
-      selected: store.state.selectedSign,
-      //options: store.state.callSigns
-    }
-  },
   mounted() {
-    store.dispatch('getSigns');
+    store.dispatch('fillSigns');
   },
   computed: {
+    selected: {
+      get() {
+        return store.getters.getSelectedSign;
+      },
+      set(value) {
+        store.dispatch('setSelectedSign', value);
+      }
+    },
     options() {
-      return store.state.callSigns;
+      return store.getters.getSigns;
     }
   }
 }
