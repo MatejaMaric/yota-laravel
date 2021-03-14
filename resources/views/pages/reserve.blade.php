@@ -17,24 +17,30 @@
   @endif
 <form action="{{ route('reserve') }}" method="POST">
   @csrf      
-  <!-- SPECIAL CALL -->
-<div class="form-group">
-  <label for="special-call">Special Callsign:</label>
-  <select class="form-control @error('scall') is-invalid @enderror" id="special-call" name="scall" required>
-    @foreach ($signs as $sign)
-      <option value="{{ $sign->sign }}" {{ old('scall') == $sign->sign ? 'selected' : '' }}>{{ $sign->sign }}</option>
-    @endforeach
-  </select> 
+
+  <call-sign-description></call-sign-description>
   @error('scall')
     <div class="alert alert-danger mt-2">{{ $message }}</div>
   @enderror
-</div>
 
-<div class="card mb-3">
-  <div class="card-body pb-1">
-    <div class="card-text" id="call-desc"></div>
-  </div>
-</div>
+  {{--<!-- SPECIAL CALL -->--}}
+{{--<div class="form-group">--}}
+  {{--<label for="special-call">Special Callsign:</label>--}}
+  {{--<select class="form-control @error('scall') is-invalid @enderror" id="special-call" name="scall" required>--}}
+    {{--@foreach ($signs as $sign)--}}
+      {{--<option value="{{ $sign->sign }}" {{ old('scall') == $sign->sign ? 'selected' : '' }}>{{ $sign->sign }}</option>--}}
+    {{--@endforeach--}}
+  {{--</select> --}}
+  {{--@error('scall')--}}
+    {{--<div class="alert alert-danger mt-2">{{ $message }}</div>--}}
+  {{--@enderror--}}
+{{--</div>--}}
+
+{{--<div class="card mb-3">--}}
+  {{--<div class="card-body pb-1">--}}
+    {{--<div class="card-text" id="call-desc"></div>--}}
+  {{--</div>--}}
+{{--</div>--}}
 
 @error('time')
   <div class="alert alert-danger mt-2">{{ $message }}</div>
@@ -163,5 +169,5 @@
       format: 'H:i'
     });
   </script>
-  <script src="{{ asset('js/reserve.js') }}"></script>
+  {{--<script src="{{ asset('js/reserve.js') }}"></script>--}}
 @endsection

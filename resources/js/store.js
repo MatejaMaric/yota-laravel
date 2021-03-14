@@ -28,8 +28,8 @@ export default new Vuex.Store({
     setSelectedSign(context, sign) {
       context.commit('setSelectedSign', sign);
     },
-    fillSigns(context) {
-      axios.get('/special-calls/show').then(response => {
+    async fillSigns(context) {
+      await axios.get('/special-calls/show').then(response => {
         context.commit('fillSigns', response.data);
       }).catch(error => {
         console.log(error);
