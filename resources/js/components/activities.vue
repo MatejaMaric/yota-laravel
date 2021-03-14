@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @signChanged="filterChanged()">
     <call-sign-filter></call-sign-filter>
 
     <div class="table-responsive mt-2">
@@ -16,6 +16,15 @@
                 </tr>
             </thead>
             <tbody>
+              <tr v-for="activity in activities">
+                <td>{{ activity.operatorCall }}</td>
+                <td>{{ activity.fromTime }}</td>
+                <td>{{ activity.toTime }}</td>
+                <td>{{ activity.specialCall }}</td>
+                <td>{{ activity.frequencies }}</td>
+                <td>{{ activity.modes }}</td>
+                <td>{{ activity.qso }}</td>
+              </tr>
             </tbody>
         </table>
     </div>
@@ -26,6 +35,19 @@
 import callSignFilter from './call-sign-filter.vue';
 
 export default {
-  components: { callSignFilter }
+  components: { callSignFilter },
+  mounted() {
+    this.$store.dispatch('fillData');
+  },
+  computed: {
+    activities() {
+      return this.$store.getters.getData;
+    }
+  },
+  methods: {
+    filterChanged() {
+      this.$store.dispatch('fillData');
+    }
+  }
 }
 </script>

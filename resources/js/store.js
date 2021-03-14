@@ -14,6 +14,9 @@ export default new Vuex.Store({
     },
     getSigns(state) {
       return state.callSigns;
+    },
+    getData(state) {
+      return state.data;
     }
   },
   mutations: {
@@ -22,6 +25,9 @@ export default new Vuex.Store({
     },
     fillSigns(state, signs) {
       state.callSigns = signs;
+    },
+    setData(state, data) {
+      state.data = data;
     }
   },
   actions: {
@@ -31,6 +37,13 @@ export default new Vuex.Store({
     async fillSigns(context) {
       await axios.get('/special-calls/show').then(response => {
         context.commit('fillSigns', response.data);
+      }).catch(error => {
+        console.log(error);
+      });
+    },
+    async fillData(context) {
+      await axios.post('/api/activities', {'call-sign': this.state.selectedSign}).then(response => {
+        context.commit('setData', response.data.data);
       }).catch(error => {
         console.log(error);
       });
