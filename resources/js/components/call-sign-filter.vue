@@ -1,7 +1,7 @@
 <template>
   <select v-model="selected">
     <option value="all">All</option>
-    <option v-for="option in options" :value="option" v-text="option"></option>
+    <option v-for="option in options" :value="option.sign" v-text="option.sign"></option>
   </select>
 </template>
 
