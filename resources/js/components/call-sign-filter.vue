@@ -20,7 +20,7 @@ export default {
       },
       set(value) {
         this.$store.dispatch('setSelectedSign', value);
-        this.$emit('signChanged');
+        this.$emit('sign-changed');
       }
     },
     options() {

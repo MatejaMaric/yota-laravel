@@ -1,6 +1,6 @@
 <template>
-  <div @signChanged="filterChanged()">
-    <call-sign-filter></call-sign-filter>
+  <div>
+    <call-sign-filter @sign-changed="filterChanged()"></call-sign-filter>
 
     <div class="table-responsive mt-2">
         <table class="table table-striped table-bordered" style="white-space:nowrap;">
