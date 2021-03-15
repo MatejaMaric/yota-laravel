@@ -3,7 +3,7 @@
     <div class="form-group">
         <label for="special-call">Special Callsign:</label>
         <select class="form-control" id="special-call" v-model="selected" name="scall" required>
-          <option v-for="option in options" :value="option.sign" v-text="option.sign"></option>
+          <option v-for="option in options" :key="option.id" :value="option.sign" v-text="option.sign"></option>
         </select> 
     </div>
 

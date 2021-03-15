@@ -16,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-              <tr v-for="activity in activities">
+              <tr v-for="(activity, index) in activities" :key="index">
                 <td>{{ activity.operatorCall }}</td>
                 <td>{{ activity.fromTime }}</td>
                 <td>{{ activity.toTime }}</td>

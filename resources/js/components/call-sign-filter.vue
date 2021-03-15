@@ -3,7 +3,7 @@
     <label for="call-sign">Filter by special callsign: </label>
     <select id="call-sign" v-model="selected">
       <option value="all">All</option>
-      <option v-for="option in options" :value="option.sign" v-text="option.sign"></option>
+      <option v-for="option in options" :key="option.id" :value="option.sign" v-text="option.sign"></option>
     </select>
   </div>
 </template>
