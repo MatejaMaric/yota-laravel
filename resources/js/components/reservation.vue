@@ -15,19 +15,19 @@
     <td contenteditable="true">{{ reservation.operatorEmail }}</td>
     <td contenteditable="true">{{ reservation.operatorCall }}</td>
     <td>
-      <button class="btn btn-primary mr-2">Update</button>;
-      <button class="btn btn-warning mr-2">Restore</button>;
-      <button class="btn btn-danger">Delete</button>;
+      <button class="btn btn-primary mr-2">Update</button>
+      <button class="btn btn-warning mr-2">Restore</button>
+      <button class="btn btn-danger">Delete</button>
     </td>
   </tr>
 </template>
 
 <script>
 export default {
-  props: ['reservationIndex'],
+  props: [ 'reservationIndex' ],
   computed: {
     reservation() {
-      return this.$store.getters.getData[reservationIndex];
+      return this.$store.getters.getData[this.reservationIndex];
     }
   }
 }
