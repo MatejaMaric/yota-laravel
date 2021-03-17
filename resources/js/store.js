@@ -47,6 +47,13 @@ export default new Vuex.Store({
       }).catch(error => {
         console.log(error);
       });
+    },
+    async fillReservations(context) {
+      await axios.post('/special-calls/reservations', {'call-sign': this.state.selectedSign}).then(response => {
+        context.commit('setData', response.data.data);
+      }).catch(error => {
+        console.log(error);
+      });
     }
   }
 });
