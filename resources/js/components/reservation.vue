@@ -1,20 +1,18 @@
 <template>
   <tr>
-    <td class="align-middle text-center">{{ reservation.id }}</td>
-    <td class="align-middle text-center">
-      <input type="checkbox" :checked="reservation.approved"/>
-    </td>
-    <td class="align-middle"><input type="text" v-model="reservation.operatorCall"></td>
-    <td class="align-middle"><input type="text" v-model="reservation.qso"></td>
-    <td class="align-middle"><input type="text" v-model="reservation.fromTime"></td>
-    <td class="align-middle"><input type="text" v-model="reservation.toTime"></td>
-    <td class="align-middle"><input type="text" v-model="reservation.specialCall"></td>
-    <td class="align-middle"><input type="text" v-model="reservation.frequencies"></td>
-    <td class="align-middle"><input type="text" v-model="reservation.modes"></td>
-    <td class="align-middle"><input type="text" v-model="reservation.operatorName"></td>
-    <td class="align-middle"><input type="text" v-model="reservation.operatorEmail"></td>
-    <td class="align-middle"><input type="text" v-model="reservation.operatorCall"></td>
-    <td class="align-middle">
+    <td v-text="reservation.id"></td>
+    <td><input type="checkbox" :checked="reservation.approved"/></td>
+    <td><input type="text" v-model="reservation.operatorCall"></td>
+    <td><input type="text" v-model="reservation.qso"></td>
+    <td><input type="text" v-model="reservation.fromTime"></td>
+    <td><input type="text" v-model="reservation.toTime"></td>
+    <td><input type="text" v-model="reservation.specialCall"></td>
+    <td><input type="text" v-model="reservation.frequencies"></td>
+    <td><input type="text" v-model="reservation.modes"></td>
+    <td><input type="text" v-model="reservation.operatorName"></td>
+    <td><input type="text" v-model="reservation.operatorEmail"></td>
+    <td><input type="text" v-model="reservation.operatorCall"></td>
+    <td>
       <button class="btn btn-primary mr-2">Update</button>
       <button class="btn btn-warning mr-2">Restore</button>
       <button class="btn btn-danger">Delete</button>
@@ -34,6 +32,10 @@ export default {
 </script>
 
 <style scoped>
+td {
+  text-align: center;
+  vertical-align: middle;
+}
 input {
   background-color: white;
   border: 1px solid lightgray;
