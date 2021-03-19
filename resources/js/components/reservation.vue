@@ -1,7 +1,7 @@
 <template>
   <tr>
     <td v-text="reservation.id"></td>
-    <td><input type="checkbox" :checked="reservation.approved"/></td>
+    <td><input type="checkbox" v-model="reservation.approved"/></td>
     <td><input type="text" v-model="reservation.operatorCall"></td>
     <td><input type="text" v-model="reservation.qso"></td>
     <td><input type="text" v-model="reservation.fromTime"></td>
@@ -23,9 +23,9 @@
 <script>
 export default {
   props: [ 'reservationIndex' ],
-  computed: {
-    reservation() {
-      return this.$store.getters.getData[this.reservationIndex];
+  data() {
+    return {
+      reservation: this.$store.getters.getData[this.reservationIndex]
     }
   }
 }
