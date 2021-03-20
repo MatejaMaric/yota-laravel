@@ -11,11 +11,11 @@
     <td><input type="text" v-model="reservation.modes"></td>
     <td><input type="text" v-model="reservation.operatorName"></td>
     <td><input type="text" v-model="reservation.operatorEmail"></td>
-    <td><input type="text" v-model="reservation.operatorCall"></td>
+    <td><input type="text" v-model="reservation.operatorPhone"></td>
     <td>
-      <button class="btn btn-primary mr-2">Update</button>
-      <button class="btn btn-warning mr-2">Restore</button>
-      <button class="btn btn-danger">Delete</button>
+      <button class="btn btn-primary mr-2" @click="updateRow">Update</button>
+      <button class="btn btn-warning mr-2" @click="restoreRow">Restore</button>
+      <button class="btn btn-danger" @click="deleteRow">Delete</button>
     </td>
   </tr>
 </template>
@@ -26,6 +26,17 @@ export default {
   data() {
     return {
       reservation: this.$store.getters.getData[this.reservationIndex]
+    }
+  },
+  methods: {
+    updateRow() {
+
+    },
+    restoreRow() {
+
+    },
+    deleteRow() {
+
     }
   }
 }
