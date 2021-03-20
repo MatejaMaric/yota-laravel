@@ -38,7 +38,7 @@ import reservationView from './reservation.vue';
 export default {
   components: { callSignFilter, reservationView },
   mounted() {
-    this.$store.dispatch('fillReservations');
+    this.$store.dispatch('pullReservations');
   },
   computed: {
     reservations() {
@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     filterChanged() {
-      this.$store.dispatch('fillReservations');
+      this.$store.dispatch('pullReservations');
     }
   }
 }

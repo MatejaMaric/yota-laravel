@@ -18,7 +18,7 @@
 <script>
 export default {
   mounted() {
-    this.$store.dispatch('fillSigns').then(() => {
+    this.$store.dispatch('pullSigns').then(() => {
       try {
         this.$store.dispatch('setSelectedSign', this.$store.getters.getSigns[0].sign);
       }

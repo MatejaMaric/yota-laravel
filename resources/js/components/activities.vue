@@ -37,7 +37,7 @@ import callSignFilter from './call-sign-filter.vue';
 export default {
   components: { callSignFilter },
   mounted() {
-    this.$store.dispatch('fillData');
+    this.$store.dispatch('pullActivities');
   },
   computed: {
     activities() {
@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     filterChanged() {
-      this.$store.dispatch('fillData');
+      this.$store.dispatch('pullActivities');
     }
   }
 }

@@ -11,7 +11,7 @@
 <script>
 export default {
   mounted() {
-    this.$store.dispatch('fillSigns');
+    this.$store.dispatch('pullSigns');
   },
   computed: {
     selected: {

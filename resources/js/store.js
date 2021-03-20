@@ -23,7 +23,7 @@ export default new Vuex.Store({
     setSelectedSign(state, sign) {
       state.selectedSign = sign;
     },
-    fillSigns(state, signs) {
+    setSigns(state, signs) {
       state.callSigns = signs;
     },
     setData(state, data) {
@@ -34,21 +34,21 @@ export default new Vuex.Store({
     setSelectedSign(context, sign) {
       context.commit('setSelectedSign', sign);
     },
-    async fillSigns(context) {
+    async pullSigns(context) {
       await axios.get('/special-calls/show').then(response => {
-        context.commit('fillSigns', response.data);
+        context.commit('setSigns', response.data);
       }).catch(error => {
         console.log(error);
       });
     },
-    async fillData(context) {
+    async pullActivities(context) {
       await axios.post('/api/activities', {'call-sign': this.state.selectedSign}).then(response => {
         context.commit('setData', response.data.data);
       }).catch(error => {
         console.log(error);
       });
     },
-    async fillReservations(context) {
+    async pullReservations(context) {
       await axios.post('/special-calls/reservations', {'call-sign': this.state.selectedSign}).then(response => {
         context.commit('setData', response.data.data);
       }).catch(error => {
