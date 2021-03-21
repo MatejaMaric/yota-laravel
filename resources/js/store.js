@@ -17,6 +17,9 @@ export default new Vuex.Store({
     },
     getData(state) {
       return state.data;
+    },
+    getDataRow(state) {
+      return (index) => _.cloneDeep(state.data[index]);
     }
   },
   mutations: {
@@ -28,6 +31,12 @@ export default new Vuex.Store({
     },
     setData(state, data) {
       state.data = data;
+    },
+    setDataRow(state, row) {
+      state.data[row.index] = _.cloneDeep(row.data);
+    },
+    removeDataRow(state, index) {
+      state.data.splice(index, 1);
     }
   },
   actions: {
@@ -54,6 +63,15 @@ export default new Vuex.Store({
       }).catch(error => {
         console.log(error);
       });
+    },
+    async pushReservation(context, data) {
+      context.commit('setDataRow', {
+        index: data.index,
+        data: data.reservation
+      });
+    },
+    async removeReservation(context, index) {
+      context.commit('removeDataRow', index);
     }
   }
 });

@@ -25,21 +25,21 @@ export default {
   props: [ 'reservationIndex' ],
   data() {
     return {
-      reservation: {}
+      reservation: this.$store.getters.getDataRow(this.reservationIndex)
     }
-  },
-  mounted() {
-    this.reservation = _.cloneDeep(this.$store.getters.getData[this.reservationIndex]);
   },
   methods: {
     updateRow() {
-
+      this.$store.dispatch('pushReservation', {
+        index: this.reservationIndex,
+        reservation: this.reservation
+      });
     },
     restoreRow() {
-      this.reservation = _.cloneDeep(this.$store.getters.getData[this.reservationIndex]);
+      this.reservation = this.$store.getters.getDataRow(this.reservationIndex);
     },
     deleteRow() {
-
+      this.$store.dispatch('removeReservation', this.reservationIndex);
     }
   }
 }
