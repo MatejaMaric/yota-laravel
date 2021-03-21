@@ -65,13 +65,32 @@ export default new Vuex.Store({
       });
     },
     async pushReservation(context, data) {
-      context.commit('setDataRow', {
-        index: data.index,
-        data: data.reservation
+      await axios.post('/api/reservations', {
+        action: 'update',
+        ...data.reservation
+      }).then(() => {
+        context.commit('setDataRow', {
+          index: data.index,
+          data: data.reservation
+        });
+      }).catch(error => {
+        console.log(error);
+        alert("Couldn't update reservation! Bad data!");
       });
     },
     async removeReservation(context, index) {
-      context.commit('removeDataRow', index);
+      let data = {
+        action: 'delete',
+        ...this.state.data[index]
+      };
+      if (confirm(`Are you sure you want to delete reservation #${data.id} made by ${data.operatorCall}?`) === true) {
+        await axios.post('/api/reservations', data).then(() => {
+          context.commit('removeDataRow', index);
+        }).catch(error => {
+          console.log(error);
+          alert('Unable to remove reservation!');
+        });
+      }
     }
   }
 });
