@@ -2,7 +2,7 @@
   <div>
     <div class="form-group">
         <label for="special-call">Special Callsign:</label>
-        <select class="form-control" id="special-call" v-model="selected" name="scall" required>
+        <select class="form-control" :class="{ 'is-invalid': isInvalid }" id="special-call" v-model="selected" :name="name" required>
           <option v-for="option in options" :key="option.id" :value="option.sign" v-text="option.sign"></option>
         </select> 
     </div>
@@ -17,10 +17,16 @@
 
 <script>
 export default {
+  props: [ 'name', 'old', 'isInvalid' ],
   mounted() {
     this.$store.dispatch('pullSigns').then(() => {
       try {
-        this.$store.dispatch('setSelectedSign', this.$store.getters.getSigns[0].sign);
+        if (this.old) {
+          this.$store.dispatch('setSelectedSign', this.old);
+        }
+        else {
+          this.$store.dispatch('setSelectedSign', this.$store.getters.getSigns[0].sign);
+        }
       }
       catch {
         console.log('No call signs!');
