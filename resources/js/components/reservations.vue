@@ -52,3 +52,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+@media only screen and (min-width:961px) {
+  .table-responsive {
+    max-height: 80vh;
+  }
+}
+</style>
