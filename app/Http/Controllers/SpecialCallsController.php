@@ -13,6 +13,13 @@ use App\Models\SpecialCall;
 
 class SpecialCallsController extends Controller
 {
+    public function index(Request $request)
+    {
+        //$data = SpecialCall::select('sign')->get()->toArray();
+        $data = SpecialCall::all()->toArray();
+        return $data;
+    }
+
     public function create(Request $request)
     {
         $data = SpecialCall::all();
