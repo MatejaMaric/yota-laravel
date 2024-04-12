@@ -7,4 +7,9 @@
     };
     composerLock = ./composer.lock;
     vendorHash = "sha256-vYuWiX3YxS6ZZ3ngsYDuR6ydggBBwBG8K+KRBP8UqrA=";
+    postInstall = ''
+        php artisan config:cache
+        php artisan route:cache
+        php artisan view:cache
+    '';
 })
