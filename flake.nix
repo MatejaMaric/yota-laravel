@@ -9,11 +9,11 @@
         nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
     in {
         overlays.default = (final: prev: {
-            ${pkgName} = prev.callPackage ./derivative.nix {};
+            ${pkgName} = prev.callPackage ./derivation.nix {};
         });
         packages = forAllSystems (system: {
-            ${pkgName} = nixpkgsFor.${system}.callPackage ./derivative.nix {};
-            default = nixpkgsFor.${system}.callPackage ./derivative.nix {};
+            ${pkgName} = nixpkgsFor.${system}.callPackage ./derivation.nix {};
+            default = nixpkgsFor.${system}.callPackage ./derivation.nix {};
         });
     };
 }
