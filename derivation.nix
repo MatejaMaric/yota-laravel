@@ -17,6 +17,7 @@ in {
     COMPOSER_MIRROR_PATH_REPOS = "1";
     COMPOSER_HTACCESS_PROTECT = "0";
     COMPOSER_DISABLE_NETWORK = "0";
+    NODE_OPTIONS="--openssl-legacy-provider";
 
     buildPhase = ''
         composer --no-ansi --no-interaction --no-dev --no-plugins --no-scripts install
