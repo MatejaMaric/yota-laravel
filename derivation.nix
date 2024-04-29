@@ -28,9 +28,11 @@ in {
         php artisan view:cache
     '';
 
+    dontPatchShebangs = true;
+
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
-    outputHash = lib.fakeSha256;
+    outputHash = "sha256-ff/J7gk2WprXf3BDD9hXaIWk4MiqOGtVwyOktDEecVU=";
 
     installPhase = ''
         mkdir $out
