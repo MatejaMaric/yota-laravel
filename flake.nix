@@ -15,5 +15,10 @@
             ${pkgName} = nixpkgsFor.${system}.callPackage ./derivation.nix {};
             default = nixpkgsFor.${system}.callPackage ./derivation.nix {};
         });
+        devShells = forAllSystems (system: {
+            default = nixpkgsFor.${system}.mkShell {
+                buildInputs = with nixpkgsFor.${system}; [ git rsync php83 nodejs_20 ];
+            };
+        });
     };
 }

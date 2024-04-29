@@ -1,4 +1,4 @@
-{ stdenvNoCC, php83, lib }: stdenvNoCC.mkDerivation (finalAttrs:
+{ stdenvNoCC, php83, nodejs_20, lib }: stdenvNoCC.mkDerivation (finalAttrs:
 let
     php' = php83.withExtensions ({ enabled, all }: enabled );
 in {
@@ -10,10 +10,7 @@ in {
     nativeBuildInputs = [
         php'
         php'.packages.composer
-    ];
-
-    buildInputs = [
-        php'
+        nodejs_20
     ];
 
     COMPOSER_CACHE_DIR = "/dev/null";
@@ -23,16 +20,19 @@ in {
 
     buildPhase = ''
         composer --no-ansi --no-interaction --no-dev --no-plugins --no-scripts install
+        npm ci
+        npm run production
         php artisan config:cache
         php artisan route:cache
         php artisan view:cache
     '';
 
+    dontStrip = true;
     dontPatchShebangs = true;
 
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
-    outputHash = "sha256-ff/J7gk2WprXf3BDD9hXaIWk4MiqOGtVwyOktDEecVU=";
+    outputHash = lib.fakeSha256;
 
     installPhase = ''
         mkdir $out
