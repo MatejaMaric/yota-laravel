@@ -1,4 +1,4 @@
-{ stdenvNoCC, php83, nodejs_20, lib }: stdenvNoCC.mkDerivation (finalAttrs:
+{ stdenvNoCC, php83, cacert, nodejs_20, lib }: stdenvNoCC.mkDerivation (finalAttrs:
 let
     php' = php83.withExtensions ({ enabled, all }: enabled );
 in {
@@ -10,6 +10,7 @@ in {
     nativeBuildInputs = [
         php'
         php'.packages.composer
+        cacert
         nodejs_20
     ];
 
@@ -20,6 +21,7 @@ in {
     NODE_OPTIONS="--openssl-legacy-provider";
 
     buildPhase = ''
+        export HOME=$(pwd)
         composer --no-ansi --no-interaction --no-dev --no-plugins --no-scripts install
         npm ci
         npm run production
