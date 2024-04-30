@@ -1,6 +1,6 @@
 {
   php83
-, nodejs
+, nodejs_18
 , fetchNpmDeps
 , npmHooks
 , lib
@@ -27,14 +27,14 @@ php83.buildComposerProject (finalAttrs: {
     };
 
     nativeBuildInputs = [
-        nodejs
-        nodejs.python
-        npmHooks.npmInstallHook
+        nodejs_18
+        nodejs_18.python
         npmHooks.npmConfigHook
+        npmHooks.npmInstallHook
     ] ++ lib.optionals stdenv.isDarwin [ darwin.cctools ];
 
     buildInputs = [
-        nodejs
+        nodejs_18
     ];
 
     postBuild = ''
