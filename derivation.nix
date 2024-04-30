@@ -1,7 +1,11 @@
 {
   php83
+, nodejs
 , fetchNpmDeps
 , npmHooks
+, lib
+, stdenv
+, darwin
 }:
 php83.buildComposerProject (finalAttrs: {
     pname =  "yota-laravel";
@@ -15,12 +19,23 @@ php83.buildComposerProject (finalAttrs: {
     composerLock = ./composer.lock;
     vendorHash = "sha256-vYuWiX3YxS6ZZ3ngsYDuR6ydggBBwBG8K+KRBP8UqrA=";
 
+    NODE_OPTIONS="--openssl-legacy-provider";
+
     npmDeps = fetchNpmDeps {
         inherit (finalAttrs) src;
         hash = "sha256-clu0a/6HjPXwNAw1BqVYeALvtinLda8z6/HT31Ucphw=";
     };
 
-    nativeBuildInputs = [ npmHooks.npmInstallHook npmHooks.npmConfigHook ];
+    nativeBuildInputs = [
+        nodejs
+        nodejs.python
+        npmHooks.npmInstallHook
+        npmHooks.npmConfigHook
+    ] ++ lib.optionals stdenv.isDarwin [ darwin.cctools ];
+
+    buildInputs = [
+        nodejs
+    ];
 
     postBuild = ''
         npm run prod
