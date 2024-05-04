@@ -46,4 +46,18 @@ php83.buildComposerProject (finalAttrs: {
         php artisan route:cache
         php artisan view:cache
     '';
+
+    # Things that will probably have to be done outside a derivation
+
+    # find . -type f -exec chmod 644 {} \;
+    # find . -type d -exec chmod 755 {} \;
+
+    # chown -R yota:yota .
+
+    # chmod -R ug+rwx ./storage
+    # chmod -R ug+rwx ./bootstrap/cache
+
+    # php artisan key:generate
+
+    # php artisan storage:link
 })
