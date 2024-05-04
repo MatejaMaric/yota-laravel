@@ -15,5 +15,26 @@
             ${pkgName} = nixpkgsFor.${system}.callPackage ./derivation.nix {};
             default = nixpkgsFor.${system}.callPackage ./derivation.nix {};
         });
+        nixosModules.default = import ./configuration.nix;
+        nixosConfigurations.testContainer = nixpkgs.lib.nixosSystem {
+            system =  "x86_64-linux";
+            pkgs = import nixpkgs {
+                system =  "x86_64-linux";
+                overlays = [ self.overlays.default ];
+            };
+            modules = [
+                self.nixosModules.default
+                ({ ... }: {
+                    system.stateVersion = "23.11";
+                    boot.isContainer = true;
+
+                    networking.hostName = "testcontainer";
+                    networking.firewall.allowedTCPPorts = [ 80 ];
+
+                    yotaLaravel.enable = true;
+                    yotaLaravel.domain = "localhost";
+                })
+            ];
+        };
     };
 }
