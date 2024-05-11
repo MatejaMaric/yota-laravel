@@ -6,6 +6,8 @@
 , lib
 , stdenv
 , darwin
+, dataDir ? "/var/lib/yota-laravel"
+, runtimeDir ? "/run/yota-laravel"
 }:
 php83.buildComposerProject (finalAttrs: {
     pname =  "yota-laravel";
@@ -42,22 +44,19 @@ php83.buildComposerProject (finalAttrs: {
     '';
 
     postInstall = ''
-        php artisan config:cache
-        php artisan route:cache
-        php artisan view:cache
+        mv "$out/share/php/${finalAttrs.pname}"/* $out
+        rm -R $out/bootstrap/cache
+
+        # Move static contents for the NixOS module to pick it up, if needed.
+        mv $out/bootstrap $out/bootstrap-static
+        mv $out/storage $out/storage-static
+
+        # Link systemd directories to output
+        ln -s ${dataDir}/.env $out/.env
+        ln -s ${dataDir}/storage $out/storage
+        ln -s ${dataDir}/storage/app/public $out/public/storage # Same as `php artisan storage:link`
+        ln -s ${runtimeDir} $out/bootstrap
+
+        chmod +x $out/artisan
     '';
-
-    # Things that will probably have to be done outside a derivation
-
-    # find . -type f -exec chmod 644 {} \;
-    # find . -type d -exec chmod 755 {} \;
-
-    # chown -R yota:yota .
-
-    # chmod -R ug+rwx ./storage
-    # chmod -R ug+rwx ./bootstrap/cache
-
-    # php artisan key:generate
-
-    # php artisan storage:link
 })

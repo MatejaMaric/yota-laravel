@@ -24,7 +24,7 @@
             };
             modules = [
                 self.nixosModules.default
-                ({ ... }: {
+                ({ pkgs, lib, ... }: {
                     system.stateVersion = "23.11";
                     boot.isContainer = true;
 
@@ -33,6 +33,7 @@
 
                     yotaLaravel.enable = true;
                     yotaLaravel.domain = "localhost";
+                    yotaLaravel.secretFile = pkgs.writeText "yota-laravel-secret" (lib.generators.toKeyValue { } { APP_KEY = ""; });
                 })
             ];
         };
