@@ -19,6 +19,9 @@ sudo nixos-container list
 # Start a container
 sudo nixos-container start yotalaravel
 
+# Check container logs
+sudo journalctl -M yotalaravel
+
 # Show container ip address
 sudo nixos-container show-ip yotalaravel
 
