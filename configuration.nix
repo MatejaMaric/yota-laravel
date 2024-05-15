@@ -163,6 +163,15 @@ in {
         services.mysql = {
             enable = true;
             package = pkgs.mariadb;
+            initialDatabases = [{
+                name = "yotadb";
+            }];
+            ensureUsers = [{
+                name = user;
+                ensurePermissions = {
+                    "yotadb.*" = "ALL PRIVILEGES";
+                };
+            }];
         };
     };
 }
