@@ -10,8 +10,9 @@ let
     runtimeDir = "/run/yota-laravel";
     yotaPkg = pkgs.yota-laravel.override { inherit dataDir runtimeDir; };
     configFile = pkgs.writeText "yota-laravel-env" (lib.generators.toKeyValue { } {
-        APP_ENV = "local";
-        APP_DEBUG = true;
+        APP_KEY = ""; # Initialised by yota-data-setup.service
+        APP_ENV = if cfg.debug then "local" else "production";
+        APP_DEBUG = cfg.debug;
         APP_URL = "https://${cfg.domain}";
         APP_DOMAIN = cfg.domain;
         LOG_CHANNEL = "stderr";
@@ -19,8 +20,7 @@ let
         DB_SOCKET = "/run/mysqld/mysqld.sock";
         DB_DATABASE = "yotadb";
         DB_USERNAME = user;
-        # No TCP/IP connection.
-        DB_PORT = 0;
+        DB_PORT = 0; # No TCP/IP connection.
     });
 in {
     options.yotaLaravel = {
@@ -31,13 +31,7 @@ in {
             example = "localhost";
             description = "Domain to host YOTA Laravel site";
         };
-        secretFile = lib.mkOption {
-            type = lib.types.path;
-            description = ''
-                A secret file to be sourced for the .env settings.
-                Place `APP_KEY` and other settings that should not end up in the Nix store here.
-            '';
-        };
+        debug = lib.mkEnableOption "debug mode";
     };
 
     config = lib.mkIf cfg.enable {
@@ -77,8 +71,7 @@ in {
                 Type = "oneshot";
                 User = user;
                 Group = group;
-                StateDirectory = if runtimeDir == "/run/yota-laravel" then "yota-laravel" else "yota-data-setup";
-                LoadCredential = "env-secrets:${cfg.secretFile}";
+                StateDirectory = lib.mkIf (runtimeDir == "/run/yota-laravel") "yota-laravel";
                 UMask = "077";
             };
 
@@ -87,11 +80,9 @@ in {
                 # It's necessary if you upgrade the application otherwise you might try to import non-existent modules.
                 rm -f ${runtimeDir}/app.php
                 rm -rf ${runtimeDir}/cache/*
-                rm -f ${dataDir}/.env
 
-                # Concatenate secret .env and non-secret .env
-                cat "$CREDENTIALS_DIRECTORY/env-secrets" > ${dataDir}/.env
-                cat ${configFile} >> ${dataDir}/.env
+                rm -f ${dataDir}/.env
+                cp --no-preserve=all ${configFile} ${dataDir}/.env
 
                 # Copy the static storage (package provided) to the runtime storage
                 mkdir -p ${dataDir}/storage

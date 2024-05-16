@@ -5,7 +5,7 @@ Primarily used for special callsign and frequency reservation handling, but it a
 
 ### Deployment:
 
-This project is currently in the process of packaging using [Nix](https://nixos.org/).
+This project is packaged using [Nix](https://nixos.org/) and [Nix Flakes](https://wiki.nixos.org/wiki/Flakes).
 You can use [NixOS Containers](https://nixos.org/manual/nixos/stable/#ch-containers) to test things out.
 For example:
 

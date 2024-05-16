@@ -47,7 +47,7 @@ php83.buildComposerProject (finalAttrs: {
         mv "$out/share/php/${finalAttrs.pname}"/* $out
         rm -R $out/bootstrap/cache
 
-        # Move static contents for the NixOS module to pick it up, if needed.
+        # Move static contents for the NixOS module to pick it up
         mv $out/bootstrap $out/bootstrap-static
         mv $out/storage $out/storage-static
 

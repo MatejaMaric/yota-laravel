@@ -33,7 +33,7 @@
 
                     yotaLaravel.enable = true;
                     yotaLaravel.domain = "localhost";
-                    yotaLaravel.secretFile = pkgs.writeText "yota-laravel-secret" (lib.generators.toKeyValue { } { APP_KEY = ""; });
+                    yotaLaravel.debug = true;
                 })
             ];
         };
